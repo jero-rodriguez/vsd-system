@@ -44,7 +44,6 @@ function makeSkillSchema(fields, requiredInteger) {
       nullable: false,
       integer: true,
       initial: 0,
-      readonly: true,
     }),
 
     voc: new fields.NumberField({
@@ -80,7 +79,6 @@ function makeSkillSchema(fields, requiredInteger) {
       nullable: false,
       integer: true,
       initial: 0,
-      readonly: true,
     }),
   });
 }
@@ -146,13 +144,10 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
 
     // 2) Stats (tu bloque de stats con base/kin/spec/total)
     const statField = () => makeStatField(fields, requiredInteger);
-    const readonlyTotal = () =>
+    const totalField = () =>
       new fields.NumberField({
         ...requiredInteger,
         initial: 0,
-        min: -20,
-        max: 35,
-        readonly: true,
       });
 
     schema.stats = new fields.SchemaField({
@@ -160,37 +155,37 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
         base: statField(),
         kin: statField(),
         spec: statField(),
-        total: readonlyTotal(),
+        total: totalField(),
       }),
       swiftness: new fields.SchemaField({
         base: statField(),
         kin: statField(),
         spec: statField(),
-        total: readonlyTotal(),
+        total: totalField(),
       }),
       fortitude: new fields.SchemaField({
         base: statField(),
         kin: statField(),
         spec: statField(),
-        total: readonlyTotal(),
+        total: totalField(),
       }),
       wits: new fields.SchemaField({
         base: statField(),
         kin: statField(),
         spec: statField(),
-        total: readonlyTotal(),
+        total: totalField(),
       }),
       wisdom: new fields.SchemaField({
         base: statField(),
         kin: statField(),
         spec: statField(),
-        total: readonlyTotal(),
+        total: totalField(),
       }),
       bearing: new fields.SchemaField({
         base: statField(),
         kin: statField(),
         spec: statField(),
-        total: readonlyTotal(),
+        total: totalField(),
       }),
     });
 

@@ -41,7 +41,7 @@ export class VsDCharacter extends Actor {
     if (!stats) return;
 
     const skills = system.skills;
-    if (!stats) return;
+    if (!skills) return;
 
     // 1) Stats
     if (stats) {
@@ -60,7 +60,7 @@ export class VsDCharacter extends Actor {
 
         for (const skill of Object.values(category.skills)) {
           const ranks = Number(skill.ranks) || 0;
-          const rankBonus = getRankBonus(ranks);
+          const rankBonus = this.getRankBonus(ranks);
           skill.rankBonus = rankBonus;
 
           const voc = Number(skill.voc) || 0;
