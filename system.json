@@ -1,21 +1,17 @@
 {
   "id": "vsd-system",
   "title": "Against The Darkmaster",
-  "description": "The Against The Darkmaster system for FoundryVTT!",
+  "description": "The unofficial Against the Darkmaster system for Foundry VTT.",
   "authors": [
     {
-      "name": "Asacolips",
-      "discord": "asacolips"
-    },
-    {
-      "name": "Lee Talman",
-      "discord": ".pizzaWizard"
+      "name": "Jeronimo Rodriguez",
+      "discord": "_jeropa"
     }
   ],
-  "url": "Replace this with a link to your public repository",
+  "url": "https://github.com/jero-rodriguez/vsd-system",
   "license": "LICENSE.txt",
   "readme": "README.md",
-  "bugs": "Replace this with a link to file issues or tickets",
+  "bugs": "https://github.com/users/jero-rodriguez/projects/1",
   "changelog": "CHANGELOG.md",
   "media": [
     {
@@ -24,10 +20,10 @@
       "thumbnail": "systems/vsd-system/assets/anvil-impact.png"
     }
   ],
-  "version": "2.0.0",
+  "version": "0.0.2",
   "compatibility": {
-    "minimum": 11,
-    "verified": "11.315"
+    "minimum": 13,
+    "verified": "13.351"
   },
   "esmodules": ["module/vsd-system.mjs"],
   "styles": ["css/vsd-system.css"],
@@ -36,16 +32,23 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json"
     }
   ],
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
-  "download": "This must link to a .zip file of the current version",
+  "manifest": "https://raw.githubusercontent.com/jero-rodriguez/vsd-system/refs/tags/v0.0.1/system.json",
+  "download": "https://github.com/jero-rodriguez/vsd-system/archive/refs/tags/v0.0.1.zip",
   "background": "systems/vsd-system/assets/anvil-impact.png",
-  "gridDistance": 5,
-  "gridUnits": "ft",
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power"
 }
