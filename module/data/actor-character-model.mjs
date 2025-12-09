@@ -152,36 +152,42 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
 
     schema.stats = new fields.SchemaField({
       brawn: new fields.SchemaField({
+        code: "brn",
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       swiftness: new fields.SchemaField({
+        code: "swi",
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       fortitude: new fields.SchemaField({
+        code: "for",
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       wits: new fields.SchemaField({
+        code: "wit",
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       wisdom: new fields.SchemaField({
+        code: "wsd",
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       bearing: new fields.SchemaField({
+        code: "bea",
         base: statField(),
         kin: statField(),
         spec: statField(),
@@ -226,9 +232,99 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
         body: {},
       }),
     });
-    // 4) Cualquier cosa extra de PJ
+    // 4) Spell Lores
+    schema.spellLores = new fields.ArrayField(
+      new fields.SchemaField({
+        name: new fields.StringField({ initial: "", blank: true }),
 
-    // 5) LEGACY (boilerplate d20) – solo si aún lo necesitas
+        statKey: new fields.StringField({ initial: "", blank: true }),
+
+        ranks: new fields.NumberField({
+          ...requiredInteger,
+          initial: 0,
+          min: 0,
+        }),
+
+        rankBonus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        voc: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        kin: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        spec: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        item: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+        total: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+
+        // Lista de Conjuros aprendidos
+        spells: new fields.SchemaField({
+          1: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          2: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          // ...
+          10: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+        }),
+      })
+    );
+
+    // 5) Inventory summary: wealth + encumbrance
+    // Esto es solo el resumen en el actor; los objetos reales irán como Items.
+    schema.wealth = new fields.SchemaField({
+      coins: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      treasure: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+    });
+
+    schema.encumbrance = new fields.SchemaField({
+      carriedWeight: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      maxWeight: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      penalty: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+    });
+
+    // 6) LEGACY (boilerplate d20) – solo si aún lo necesitas
     schema.attributes = new fields.SchemaField({
       level: new fields.SchemaField({
         value: new fields.NumberField({ ...requiredInteger, initial: 1 }),

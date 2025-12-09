@@ -73,7 +73,32 @@ export class VsDCharacter extends Actor {
       }
     }
 
-    // Aquí irán en el futuro derives de DEF, saves, etc.
+    // 3) Spell Lores
+    const spellLores = system.spellLores ?? [];
+    for (const lore of spellLores) {
+      if (!lore) continue;
+
+      const ranks = Number(lore.ranks) || 0;
+      const rankBonus = this.getRankBonus(ranks);
+      lore.rankBonus = rankBonus;
+
+      const voc = Number(lore.voc) || 0;
+      const kin = Number(lore.kin) || 0;
+      const spec = Number(lore.spec) || 0;
+      const item = Number(lore.item) || 0;
+
+      lore.total = rankBonus + voc + kin + spec + item;
+    }
+
+    // 4) Inventory summary (de momento solo inicializamos; más adelante,
+    // cuando definamos Items, sumaremos pesos aquí con this.items)
+    if (!system.encumbrance) {
+      system.encumbrance = {};
+    }
+    system.encumbrance.carriedWeight =
+      Number(system.encumbrance.carriedWeight) || 0;
+    system.encumbrance.maxWeight = Number(system.encumbrance.maxWeight) || 0;
+    system.encumbrance.penalty = Number(system.encumbrance.penalty) || 0;
   }
 
   getRollData2() {
