@@ -152,42 +152,60 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
 
     schema.stats = new fields.SchemaField({
       brawn: new fields.SchemaField({
-        code: "brn",
+        code: new fields.StringField({
+          initial: "brn",
+          blank: false,
+        }),
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       swiftness: new fields.SchemaField({
-        code: "swi",
+        code: new fields.StringField({
+          initial: "swi",
+          blank: false,
+        }),
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       fortitude: new fields.SchemaField({
-        code: "for",
+        code: new fields.StringField({
+          initial: "for",
+          blank: false,
+        }),
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       wits: new fields.SchemaField({
-        code: "wit",
+        code: new fields.StringField({
+          initial: "wit",
+          blank: false,
+        }),
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       wisdom: new fields.SchemaField({
-        code: "wsd",
+        code: new fields.StringField({
+          initial: "wsd",
+          blank: false,
+        }),
         base: statField(),
         kin: statField(),
         spec: statField(),
         total: totalField(),
       }),
       bearing: new fields.SchemaField({
-        code: "bea",
+        code: new fields.StringField({
+          initial: "bea",
+          blank: false,
+        }),
         base: statField(),
         kin: statField(),
         spec: statField(),
@@ -232,9 +250,11 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
         body: {},
       }),
     });
+
     // 4) Spell Lores
     schema.spellLores = new fields.ArrayField(
       new fields.SchemaField({
+        loreId: new fields.StringField({ initial: "", blank: true }), // id o código de item Spell Lore
         name: new fields.StringField({ initial: "", blank: true }),
 
         statKey: new fields.StringField({ initial: "", blank: true }),
@@ -244,7 +264,6 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
           initial: 0,
           min: 0,
         }),
-
         rankBonus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         voc: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         kin: new fields.NumberField({ ...requiredInteger, initial: 0 }),
@@ -252,119 +271,11 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
         item: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         total: new fields.NumberField({ ...requiredInteger, initial: 0 }),
 
-        // Lista de Conjuros aprendidos
-        spells: new fields.SchemaField({
-          firstWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          secondWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          thirdWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          fourthWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          fifthWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          sixthWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          seventhWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          eighthWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          ninthWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-          tenthWeave: new fields.SchemaField({
-            name: new fields.StringField({ initial: "", blank: true }),
-            pp: new fields.NumberField({
-              ...requiredInteger,
-              initial: 0,
-              min: 0,
-            }),
-            range: new fields.StringField({ initial: "", blank: true }),
-            duration: new fields.StringField({ initial: "", blank: true }),
-            effect: new fields.StringField({ initial: "", blank: true }),
-          }),
-        }),
+        // Opcional: lista de spells aprendidos (por id o código)
+        knownSpells: new fields.ArrayField(
+          new fields.StringField({ initial: "", blank: true }),
+          { initial: [] }
+        ),
       })
     );
 

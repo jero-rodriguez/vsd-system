@@ -32,8 +32,8 @@ Hooks.once("init", function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d20 + @abilities.dex.mod",
-    decimals: 2,
+    formula: "1d100",
+    decimals: 0,
   };
 
   // Define custom Document and DataModel classes
@@ -48,10 +48,23 @@ Hooks.once("init", function () {
   };
   CONFIG.Item.documentClass = VsDItem;
   CONFIG.Item.dataModels = {
-    item: models.VsDItem,
+    gear: models.VsDGear,
     feature: models.VsDFeature,
+    weapon: models.VsDWeapon,
+    armor: models.VsDArmor,
     spell: models.VsDSpell,
+    spellLore: models.VsDSpellLore,
   };
+  // Asegurarnos de que existe el objeto systemDataModels
+  CONFIG.Item.systemDataModels = CONFIG.Item.systemDataModels || {};
+
+  // Mapear tipos de item a DataModels
+  CONFIG.Item.systemDataModels["gear"] = models.VsDGear;
+  CONFIG.Item.systemDataModels["feature"] = models.VsDFeature;
+  CONFIG.Item.systemDataModels["weapon"] = models.VsDWeapon;
+  CONFIG.Item.systemDataModels["armor"] = models.VsDArmor;
+  CONFIG.Item.systemDataModels["spellLore"] = models.VsDSpellLore;
+  CONFIG.Item.systemDataModels["spell"] = models.VsDSpell;
 
   // Active Effects are never copied to the Actor,
   // but will still apply to the Actor from within the Item
