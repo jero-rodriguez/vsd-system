@@ -254,7 +254,7 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
 
         // Lista de Conjuros aprendidos
         spells: new fields.SchemaField({
-          1: new fields.SchemaField({
+          firstWeave: new fields.SchemaField({
             name: new fields.StringField({ initial: "", blank: true }),
             pp: new fields.NumberField({
               ...requiredInteger,
@@ -265,7 +265,7 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
             duration: new fields.StringField({ initial: "", blank: true }),
             effect: new fields.StringField({ initial: "", blank: true }),
           }),
-          2: new fields.SchemaField({
+          secondWeave: new fields.SchemaField({
             name: new fields.StringField({ initial: "", blank: true }),
             pp: new fields.NumberField({
               ...requiredInteger,
@@ -276,8 +276,84 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
             duration: new fields.StringField({ initial: "", blank: true }),
             effect: new fields.StringField({ initial: "", blank: true }),
           }),
-          // ...
-          10: new fields.SchemaField({
+          thirdWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          fourthWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          fifthWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          sixthWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          seventhWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          eighthWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          ninthWeave: new fields.SchemaField({
+            name: new fields.StringField({ initial: "", blank: true }),
+            pp: new fields.NumberField({
+              ...requiredInteger,
+              initial: 0,
+              min: 0,
+            }),
+            range: new fields.StringField({ initial: "", blank: true }),
+            duration: new fields.StringField({ initial: "", blank: true }),
+            effect: new fields.StringField({ initial: "", blank: true }),
+          }),
+          tenthWeave: new fields.SchemaField({
             name: new fields.StringField({ initial: "", blank: true }),
             pp: new fields.NumberField({
               ...requiredInteger,
