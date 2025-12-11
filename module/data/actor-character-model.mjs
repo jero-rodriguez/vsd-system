@@ -9,6 +9,34 @@ const SKILL_STATS = Object.freeze([
   "bearing",
 ]);
 
+// Definición de stats principales: clave + código
+const STAT_DEFINITIONS = Object.freeze({
+  brawn: { code: "brn" },
+  swiftness: { code: "swi" },
+  fortitude: { code: "for" },
+  wits: { code: "wit" },
+  wisdom: { code: "wsd" },
+  bearing: { code: "bea" },
+});
+
+const MAGIC_STAT_KEYS = Object.freeze({
+  wits: { code: "wit" },
+  wisdom: { code: "wsd" },
+  bearing: { code: "bea" },
+});
+
+// Categorías de skills y sus skills internas
+const SKILL_CATEGORY_DEFINITIONS = Object.freeze({
+  armor: ["armor"],
+  combat: ["blunt", "blades", "ranged", "polearms", "brawl"],
+  adventuring: ["athletics", "ride", "hunting", "nature", "wandering"],
+  roguery: ["acrobatics", "stealth", "locksAndTraps", "perception", "deceive"],
+  lore: ["arcana", "charisma", "cultures", "healer", "songsAndTales"],
+  body: ["body"],
+});
+
+/* Helpers */
+
 function makeStatField(fields, requiredInteger) {
   return new fields.NumberField({
     ...requiredInteger,
@@ -20,6 +48,13 @@ function makeStatField(fields, requiredInteger) {
       if (value % 5 !== 0) return "Stat must be a multiple of 5.";
       return true;
     },
+  });
+}
+
+function makeTotalStatField(fields, requiredInteger) {
+  return new fields.NumberField({
+    ...requiredInteger,
+    initial: 0,
   });
 }
 
@@ -83,23 +118,33 @@ function makeSkillSchema(fields, requiredInteger) {
   });
 }
 
-function makeSkillCategorySchema(fields, requiredInteger, definition) {
+function makeSkillCategorySchema(fields, requiredInteger, skillNames) {
   const skillsSchema = {};
-  for (const name of Object.keys(definition)) {
+
+  for (const name of skillNames) {
     skillsSchema[name] = makeSkillSchema(fields, requiredInteger);
   }
 
   return new fields.SchemaField({
-    dpPerLevel: new fields.NumberField({
-      required: true,
-      nullable: false,
-      integer: true,
-      initial: 0,
-      min: 0,
-      max: 5,
-    }),
     skills: new fields.SchemaField(skillsSchema),
   });
+}
+
+function makeStatsSchema(fields, requiredInteger) {
+  const statsSchema = {};
+  for (const [key, { code }] of Object.entries(STAT_DEFINITIONS)) {
+    statsSchema[key] = new fields.SchemaField({
+      code: new fields.StringField({
+        initial: code,
+        blank: false,
+      }),
+      base: makeStatField(fields, requiredInteger),
+      kin: makeStatField(fields, requiredInteger),
+      spec: makeStatField(fields, requiredInteger),
+      total: makeTotalStatField(fields, requiredInteger),
+    });
+  }
+  return new fields.SchemaField(statsSchema);
 }
 
 export default class VsDActorCharacterModel extends VsDActorBaseModel {
@@ -107,7 +152,7 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };
 
-    // Empezamos por el schema base (HP, biography, etc.)
+    // Base (HP, biography, etc.)
     const schema = super.defineSchema();
 
     // 1) Identity
@@ -124,141 +169,47 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
         itemCode: new fields.StringField({ initial: "", blank: true }),
         name: new fields.StringField({ initial: "", blank: true }),
       }),
-
       xp: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
         min: 0,
       }),
-
       level: new fields.NumberField({
         ...requiredInteger,
         initial: 1,
         min: 1,
       }),
-
       motivation: new fields.StringField({ initial: "", blank: true }),
       nature: new fields.StringField({ initial: "", blank: true }),
       allegiance: new fields.StringField({ initial: "", blank: true }),
     });
 
-    // 2) Stats (tu bloque de stats con base/kin/spec/total)
-    const statField = () => makeStatField(fields, requiredInteger);
-    const totalField = () =>
-      new fields.NumberField({
-        ...requiredInteger,
-        initial: 0,
-      });
+    // 2) Stats
+    schema.stats = makeStatsSchema(fields, requiredInteger);
 
-    schema.stats = new fields.SchemaField({
-      brawn: new fields.SchemaField({
-        code: new fields.StringField({
-          initial: "brn",
-          blank: false,
-        }),
-        base: statField(),
-        kin: statField(),
-        spec: statField(),
-        total: totalField(),
-      }),
-      swiftness: new fields.SchemaField({
-        code: new fields.StringField({
-          initial: "swi",
-          blank: false,
-        }),
-        base: statField(),
-        kin: statField(),
-        spec: statField(),
-        total: totalField(),
-      }),
-      fortitude: new fields.SchemaField({
-        code: new fields.StringField({
-          initial: "for",
-          blank: false,
-        }),
-        base: statField(),
-        kin: statField(),
-        spec: statField(),
-        total: totalField(),
-      }),
-      wits: new fields.SchemaField({
-        code: new fields.StringField({
-          initial: "wit",
-          blank: false,
-        }),
-        base: statField(),
-        kin: statField(),
-        spec: statField(),
-        total: totalField(),
-      }),
-      wisdom: new fields.SchemaField({
-        code: new fields.StringField({
-          initial: "wsd",
-          blank: false,
-        }),
-        base: statField(),
-        kin: statField(),
-        spec: statField(),
-        total: totalField(),
-      }),
-      bearing: new fields.SchemaField({
-        code: new fields.StringField({
-          initial: "bea",
-          blank: false,
-        }),
-        base: statField(),
-        kin: statField(),
-        spec: statField(),
-        total: totalField(),
-      }),
-    });
-
-    // 3) Skills (tu bloque de skills con makeSkillCategorySchema, etc.)
-    schema.skills = new fields.SchemaField({
-      armor: makeSkillCategorySchema(fields, requiredInteger, {
-        armor: {},
-      }),
-      combat: makeSkillCategorySchema(fields, requiredInteger, {
-        blunt: {},
-        blades: {},
-        ranged: {},
-        polearms: {},
-        brawl: {},
-      }),
-      adventuring: makeSkillCategorySchema(fields, requiredInteger, {
-        athletics: {},
-        ride: {},
-        hunting: {},
-        nature: {},
-        wandering: {},
-      }),
-      roguery: makeSkillCategorySchema(fields, requiredInteger, {
-        acrobatics: {},
-        stealth: {},
-        locksAndTraps: {},
-        perception: {},
-        deceive: {},
-      }),
-      lore: makeSkillCategorySchema(fields, requiredInteger, {
-        arcana: {},
-        charisma: {},
-        cultures: {},
-        healer: {},
-        songsAndTales: {},
-      }),
-      body: makeSkillCategorySchema(fields, requiredInteger, {
-        body: {},
-      }),
-    });
+    // 3) Skills
+    const skillCategoriesSchema = {};
+    for (const [categoryKey, skillNames] of Object.entries(
+      SKILL_CATEGORY_DEFINITIONS
+    )) {
+      skillCategoriesSchema[categoryKey] = makeSkillCategorySchema(
+        fields,
+        requiredInteger,
+        skillNames
+      );
+    }
+    schema.skills = new fields.SchemaField(skillCategoriesSchema);
 
     // 4) Spell Lores
     schema.spellLores = new fields.ArrayField(
       new fields.SchemaField({
-        loreId: new fields.StringField({ initial: "", blank: true }), // id o código de item Spell Lore
+        code: new fields.StringField({ initial: "", blank: true }),
         name: new fields.StringField({ initial: "", blank: true }),
-
-        statKey: new fields.StringField({ initial: "", blank: true }),
-
+        statKey: new fields.StringField({
+          initial: MAGIC_STAT_KEYS ? Object.keys(MAGIC_STAT_KEYS)[0] : "",
+          blank: false,
+          choices: Object.keys(MAGIC_STAT_KEYS),
+        }),
         ranks: new fields.NumberField({
           ...requiredInteger,
           initial: 0,
@@ -271,7 +222,6 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
         item: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         total: new fields.NumberField({ ...requiredInteger, initial: 0 }),
 
-        // Opcional: lista de spells aprendidos (por id o código)
         knownSpells: new fields.ArrayField(
           new fields.StringField({ initial: "", blank: true }),
           { initial: [] }
@@ -279,21 +229,21 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
       })
     );
 
-    // 5) Inventory summary: wealth + encumbrance
-    // Esto es solo el resumen en el actor; los objetos reales irán como Items.
+    // 5) Wealth
     schema.wealth = new fields.SchemaField({
-      coins: new fields.NumberField({
+      wealthLevel: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
         min: 0,
       }),
-      treasure: new fields.NumberField({
+      status: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
         min: 0,
       }),
     });
 
+    // 6) Encumbrance
     schema.encumbrance = new fields.SchemaField({
       carriedWeight: new fields.NumberField({
         ...requiredInteger,
@@ -311,25 +261,74 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
       }),
     });
 
-    // 6) LEGACY (boilerplate d20) – solo si aún lo necesitas
-    schema.attributes = new fields.SchemaField({
-      level: new fields.SchemaField({
-        value: new fields.NumberField({ ...requiredInteger, initial: 1 }),
+    // 7) Magic Points
+    schema.magicPoints = new fields.SchemaField({
+      total: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      current: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      kinBase: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      magicStatBonus: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+      specialBonus: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+      vocationBonus: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
       }),
     });
 
-    schema.abilities = new fields.SchemaField(
-      Object.keys(CONFIG.VSD_SYSTEM.abilities ?? {}).reduce((obj, ability) => {
-        obj[ability] = new fields.SchemaField({
-          value: new fields.NumberField({
-            ...requiredInteger,
-            initial: 10,
-            min: 0,
-          }),
-        });
-        return obj;
-      }, {})
-    );
+    // 8) Drive Points
+    schema.drivePoints = new fields.SchemaField({
+      total: new fields.NumberField({
+        ...requiredInteger,
+        initial: 1,
+        min: 0,
+        max: 5,
+      }),
+      current: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+        max: 5,
+      }),
+    });
+
+    // 9) Background Points
+    schema.backgroundPoints = new fields.SchemaField({
+      total: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+    });
+
+    // 10) Movement
+    schema.movement = new fields.SchemaField({
+      rate: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      encumbranceLevel: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+    });
 
     return schema;
   }

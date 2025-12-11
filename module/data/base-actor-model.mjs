@@ -7,15 +7,65 @@ export default class VsDActorBaseModel extends VsDDataModel {
     const schema = {};
 
     schema.hitPoints = new fields.SchemaField({
-      current: new fields.NumberField({
+      total: new fields.NumberField({
         ...requiredInteger,
-        initial: 10,
+        initial: 0,
         min: 0,
       }),
-      max: new fields.NumberField({
+      current: new fields.NumberField({
         ...requiredInteger,
-        initial: 10,
+        initial: 0,
         min: 0,
+      }),
+      maxHitPoints: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      bruiseThreshold: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+    });
+
+    schema.wounds = new SchemaField({
+      bleed: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+      }),
+      stunned: new fields.BooleanField({
+        required: true,
+        nullable: false,
+        initial: false,
+      }),
+      penalties: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+        min: 0,
+        max: 100,
+      }),
+      conditions: new fields.ArrayField({
+        item: new fields.StringField({ blank: false }),
+        ...requiredInteger,
+        initial: [],
+      }),
+      injuries: new fields.ArrayField({
+        item: new fields.StringField({ blank: false }),
+        ...requiredInteger,
+        initial: [],
+      }),
+    });
+
+    schema.saves = new fields.SchemaField({
+      toughness: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+      willpower: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
       }),
     });
 
