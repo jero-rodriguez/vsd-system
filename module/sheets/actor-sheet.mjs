@@ -123,7 +123,7 @@ export class VsDActorSheet extends foundry.appv1.sheets.ActorSheet {
     for (let i of context.items) {
       i.img = i.img || Item.DEFAULT_ICON;
       // Append to gear.
-      if (i.type === "item") {
+      if (i.type === "gear") {
         gear.push(i);
       }
       // Append to features.

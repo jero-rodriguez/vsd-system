@@ -7,6 +7,13 @@ export default class VsDItemBase extends VsDDataModel {
     const fields = foundry.data.fields;
     const schema = {};
 
+    // Campo de código interno opcional (para vincular con el manual u hojas)
+    schema.code = new fields.StringField({
+      initial: "",
+      required: false,
+      blank: true,
+    });
+
     // Descripción corta o larga, como prefieras
     schema.description = new fields.HTMLField({
       initial: "",

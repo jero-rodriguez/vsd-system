@@ -54,6 +54,9 @@ Hooks.once("init", function () {
     armor: models.VsDArmor,
     spell: models.VsDSpell,
     spellLore: models.VsDSpellLore,
+    kin: models.VsDKinModel,
+    culture: models.VsDCultureModel,
+    vocation: models.VsDVocationModel,
   };
   // Asegurarnos de que existe el objeto systemDataModels
   CONFIG.Item.systemDataModels = CONFIG.Item.systemDataModels || {};
