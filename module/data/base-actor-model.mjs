@@ -29,7 +29,7 @@ export default class VsDActorBaseModel extends VsDDataModel {
       }),
     });
 
-    schema.wounds = new SchemaField({
+    schema.wounds = new fields.SchemaField({
       bleed: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
@@ -46,16 +46,22 @@ export default class VsDActorBaseModel extends VsDDataModel {
         min: 0,
         max: 100,
       }),
-      conditions: new fields.ArrayField({
-        item: new fields.StringField({ blank: false }),
-        ...requiredInteger,
-        initial: [],
-      }),
-      injuries: new fields.ArrayField({
-        item: new fields.StringField({ blank: false }),
-        ...requiredInteger,
-        initial: [],
-      }),
+      conditions: new fields.ArrayField(
+        new fields.StringField({ blank: false }),
+        {
+          required: true,
+          nullable: false,
+          initial: [],
+        }
+      ),
+      injuries: new fields.ArrayField(
+        new fields.StringField({ blank: false }),
+        {
+          required: true,
+          nullable: false,
+          initial: [],
+        }
+      ),
     });
 
     schema.saves = new fields.SchemaField({

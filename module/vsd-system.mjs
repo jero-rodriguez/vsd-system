@@ -5,6 +5,7 @@ import { VsDItem } from "./documents/item.mjs";
 // Import sheet classes.
 import { VsDActorSheet } from "./sheets/actor-sheet.mjs";
 import { VsDItemSheet } from "./sheets/item-sheet.mjs";
+import { VsDKinSheet } from "./sheets/items/item-kin-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { VSD_SYSTEM } from "./helpers/config.mjs";
@@ -95,10 +96,32 @@ Hooks.once("init", function () {
     "vsd-system",
     VsDItemSheet,
     {
-      makeDefault: true,
-      label: "VSD_SYSTEM.SheetLabels.Item",
+      makeDefault: false,
+      label: "VSD_SYSTEM.SheetLabels.Item (Legacy V1)",
     }
   );
+
+  /* foundry.applications.sheets.registerSheet("vsd-system", Item, {
+    types: [
+      "gear",
+      "feature",
+      "weapon",
+      "armor",
+      "spell",
+      "spellLore",
+      "culture",
+      "vocation",
+    ],
+    sheetClass: VsDItemSheet,
+    makeDefault: false,
+    label: "VSD_SYSTEM.SheetLabels.Item",
+  }); */
+
+  foundry.documents.collections.Items.registerSheet("vsd-system", VsDKinSheet, {
+    types: ["kin"],
+    makeDefault: true,
+    label: "VsD Kin Sheet (V2)",
+  });
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();

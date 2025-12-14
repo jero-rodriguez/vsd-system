@@ -1,4 +1,4 @@
-import { VsDItemBaseModel } from "./base-item-model.mjs";
+import VsDItemBaseModel from "./base-item-model.mjs";
 
 const MAGIC_STAT_KEY = Object.freeze({
   wits: { code: "wit" },

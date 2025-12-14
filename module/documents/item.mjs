@@ -3,6 +3,27 @@
  * @extends {Item}
  */
 export class VsDItem extends Item {
+  prepareBaseData() {
+    super.prepareBaseData();
+
+    if (this.type !== "kin") return;
+
+    const system = this.system;
+
+    // Compatibilidad: arrays antiguos → texto
+    if (Array.isArray(system.specialTraits)) {
+      system.specialTraits = system.specialTraits
+        .filter((t) => t && t.trim())
+        .join("\n");
+    }
+
+    if (Array.isArray(system.suggestedCultures)) {
+      system.suggestedCultures = system.suggestedCultures
+        .filter((c) => c && c.trim())
+        .join("\n");
+    }
+  }
+
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
