@@ -13,6 +13,8 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "sass": "^1.96.0"
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.346.0-beta.20250812191140",
+    "sass": "^1.96.0",
+    "typescript": "^5.9.3"
   }
 }
