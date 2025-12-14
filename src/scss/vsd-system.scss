@@ -1,21 +1,12 @@
-// Add custom fonts by visiting and search https://fonts.google.com
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Carga módulos */
+@use "utils";
+@use "global";
+@use "components";
+@use "sheets";
 
-// Import utilities.
-@import 'utils/typography';
-@import 'utils/colors';
-@import 'utils/mixins';
-@import 'utils/variables';
+/* Recomendación: NO uses @import url(...) en Sass.
+   Mejor mete la fuente como <link> en el HTML, o déjala como CSS puro aparte.
+   Si quieres mantenerlo aquí, lo dejamos como "plain CSS import" (ver nota abajo). */
 
-/* Global styles */
-@import 'global/window';
-@import 'global/grid';
-@import 'global/flex';
-
-/* Styles limited to vsd-system sheets */
-.vsd-system {
-  @import 'components/forms';
-  @import 'components/resource';
-  @import 'components/items';
-  @import 'components/effects';
-}
+/* Plain CSS import permitido */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");

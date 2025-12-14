@@ -1,72 +1,95 @@
-<section class="vsd-kin-sheet" autocomplete="off">
-    <header>
-        <div>
-            <label>Name</label>
-            <input type="text" name="name" value="{{item.name}}" />
+<section class="vsd-kin-sheet">
+    <header class="sheet-header">
+        <h1 class="charname">
+            <input name="name" type="text" value="{{item.name}}" placeholder="Kin Name" />
+        </h1>
+    </header>
+
+    <fieldset class="vsd-fieldset">
+        <legend>Modifiers</legend>
+
+        <div class="vsd-grid vsd-grid--6">
+            <div class="vsd-cell">
+                <label title="Brawn">BRN</label>
+                <input type="number" name="system.stats.brn" value="{{system.stats.brn}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Swiftness">SWI</label>
+                <input type="number" name="system.stats.swi" value="{{system.stats.swi}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Fortitude">FOR</label>
+                <input type="number" name="system.stats.for" value="{{system.stats.for}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Wits">WIT</label>
+                <input type="number" name="system.stats.wit" value="{{system.stats.wit}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Wisdom">WSD</label>
+                <input type="number" name="system.stats.wsd" value="{{system.stats.wsd}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Bearing">BEA</label>
+                <input type="number" name="system.stats.bea" value="{{system.stats.bea}}" />
+            </div>
         </div>
 
-        <div>
-            <label>Code</label>
-            <input type="text" name="system.code" value="{{system.code}}" />
+        <hr class="vsd-sep" />
+
+        <div class="vsd-grid vsd-grid--6">
+            <div class="vsd-cell">
+                <label title="Hit Points">HP</label>
+                <input type="number" name="system.resources.hitPoints" value="{{system.resources.hitPoints}}" min="0" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Magic Points">MP</label>
+                <input type="number" name="system.resources.magicPoints" value="{{system.resources.magicPoints}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Total Saving Roll">TSR</label>
+                <input type="number" name="system.resources.tsr" value="{{system.resources.tsr}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Will Saving Roll">WSR</label>
+                <input type="number" name="system.resources.wsr" value="{{system.resources.wsr}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Background Points">BPs</label>
+                <input type="number" name="system.resources.backgroundPoints"
+                    value="{{system.resources.backgroundPoints}}" />
+            </div>
+            <div class="vsd-cell">
+                <label title="Wealth Level Bonus">WL</label>
+                <input type="number" name="system.resources.wealthLevelBonus"
+                    value="{{system.resources.wealthLevelBonus}}" />
+            </div>
         </div>
+    </fieldset>
 
-        <section>
-            <h2>Description</h2>
-            <textarea name="system.description" rows="6">{{system.description}}</textarea>
-        </section>
+    <fieldset class="vsd-fieldset">
+        <legend>Notes</legend>
 
-        <section>
-            <h2>Kin Modifiers: Stats</h2>
-            <div class="grid">
-                <div><label>BRN</label><input type="number" name="system.stats.brn" value="{{system.stats.brn}}" />
-                </div>
-                <div><label>SWI</label><input type="number" name="system.stats.swi" value="{{system.stats.swi}}" />
-                </div>
-                <div><label>FOR</label><input type="number" name="system.stats.for" value="{{system.stats.for}}" />
-                </div>
-                <div><label>WIT</label><input type="number" name="system.stats.wit" value="{{system.stats.wit}}" />
-                </div>
-                <div><label>WSD</label><input type="number" name="system.stats.wsd" value="{{system.stats.wsd}}" />
-                </div>
-                <div><label>BEA</label><input type="number" name="system.stats.bea" value="{{system.stats.bea}}" />
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Kin Modifiers: Resources</h2>
-            <div class="grid">
-                <div><label>HP</label><input type="number" name="system.resources.hitPoints"
-                        value="{{system.resources.hitPoints}}" min="0" /></div>
-                <div><label>Max HP</label><input type="number" name="system.resources.maxHitPoints"
-                        value="{{system.resources.maxHitPoints}}" min="0" /></div>
-                <div><label>MP</label><input type="number" name="system.resources.magicPoints"
-                        value="{{system.resources.magicPoints}}" /></div>
-                <div><label>TSR</label><input type="number" name="system.resources.tsr"
-                        value="{{system.resources.tsr}}" />
-                </div>
-                <div><label>WSR</label><input type="number" name="system.resources.wsr"
-                        value="{{system.resources.wsr}}" />
-                </div>
-                <div><label>Background Pts</label><input type="number" name="system.resources.backgroundPoints"
-                        value="{{system.resources.backgroundPoints}}" /></div>
-                <div><label>Wealth Bonus</label><input type="number" name="system.resources.wealthLevelBonus"
-                        value="{{system.resources.wealthLevelBonus}}" /></div>
-            </div>
-
-            <div>
-                <label>Initial Wealth Level</label>
+        <div class="form-group stacked">
+            <label title="Starting Wealth Level">Starting Wealth Level</label>
+            <div class="form-fields">
                 <input type="number" name="system.initialWealthLevel" value="{{system.initialWealthLevel}}" min="0" />
             </div>
-        </section>
+        </div>
 
-        <section>
-            <h2>Special Traits</h2>
-            <textarea name="system.specialTraits" rows="6">{{system.specialTraits}}</textarea>
-        </section>
+        <div class="form-group stacked">
+            <label title="Special Traits">Special Traits</label>
+            <textarea name="system.specialTraits" rows="4">{{system.specialTraits}}</textarea>
+        </div>
 
-        <section>
-            <h2>Suggested Cultures</h2>
-            <textarea name="system.suggestedCultures" rows="6">{{system.suggestedCultures}}</textarea>
-        </section>
+        <div class="form-group stacked">
+            <label title="Suggested Cultures">Suggested Cultures</label>
+            <textarea name="system.suggestedCultures" rows="3">{{system.suggestedCultures}}</textarea>
+        </div>
+
+        <div class="form-group stacked">
+            <label title="Description">Description</label>
+            <textarea name="system.description" rows="6">{{system.description}}</textarea>
+        </div>
+    </fieldset>
 </section>

@@ -1,0 +1,366 @@
+/* _kin.scss
+   Kin Sheet (Foundry VTT v13, Sheets V2) - estilo MERP/VsD
+   - Página “papel” centrada
+   - Titlebar con ornamentos
+   - Panel superior ÚNICO con 2 columnas y separador
+   - Campos con aspecto “cuaderno” (bordes suaves, fondo cálido)
+   - CSS encapsulado: no toca la barra de Foundry
+*/
+
+.vsd-kin-section {
+  /* =========================
+     1) Variables locales
+     ========================= */
+  --paper: #ffffff;
+  --ink: #111111;
+  --muted: #2b2b2b;
+
+  --bar: #2f2b30;
+  --barText: #e6e1d8;
+
+  --line: rgba(0, 0, 0, 0.18);
+  --lineStrong: #111111;
+
+  --panelBg: rgba(0, 0, 0, 0.012);
+
+  --fieldBorder: rgba(0, 0, 0, 0.14);
+  --fieldBg: rgba(245, 240, 228, 0.7);
+  --fieldBgHover: rgba(245, 240, 228, 0.8);
+  --fieldBgFocus: rgba(245, 240, 228, 0.92);
+
+  --focus: rgba(0, 0, 0, 0.35);
+
+  background: transparent;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+  /* =========================
+     2) Página (papel)
+     ========================= */
+  .kin-page {
+    width: 720px;
+    margin: 0 auto;
+    padding: 18px 18px;
+
+    background: var(--paper);
+    color: var(--ink);
+
+    box-sizing: border-box;
+    box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  @media (max-width: 820px) {
+    .kin-page {
+      width: auto;
+      margin: 0;
+      padding: 14px 12px;
+      box-shadow: none;
+    }
+  }
+
+  /* =========================
+     3) Reset mínimo (SUAVE) dentro del papel
+     - Importante: NO anular borders/background aquí
+     ========================= */
+  .kin-page :where(input, select, textarea, button) {
+    color: inherit;
+    font: inherit;
+  }
+
+  .kin-page :where(table) {
+    background: transparent;
+    border-spacing: 0;
+  }
+
+  /* =========================
+     4) Titlebar MERP
+     ========================= */
+  .kin-titlebar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .kin-title {
+    width: 100%;
+    padding: 2px 0;
+
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+
+    border: none;
+    background: transparent;
+    outline: none;
+
+    &:focus {
+      outline: 1px dashed var(--focus);
+      outline-offset: 3px;
+    }
+  }
+
+  .kin-ornament {
+    height: 18px;
+    min-width: 120px;
+    position: relative;
+  }
+
+  .kin-ornament::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    display: block;
+
+    background: linear-gradient(var(--ink), var(--ink)) 0 50%/100% 2px no-repeat,
+      radial-gradient(circle at 10px 50%, var(--ink) 2px, transparent 3px) 0 50%/18px
+        18px repeat-x;
+    opacity: 0.95;
+  }
+
+  @media (max-width: 520px) {
+    .kin-title {
+      font-size: 30px;
+    }
+    .kin-ornament {
+      min-width: 70px;
+    }
+  }
+
+  /* =========================
+     5) Bloques y títulos
+     ========================= */
+  .kin-block {
+    margin-bottom: 14px;
+  }
+
+  .kin-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0 0 6px;
+    color: var(--muted);
+  }
+
+  /* =========================
+     6) Panel superior ÚNICO
+     Requiere HBS:
+       <section class="kin-top">
+         <div class="kin-top__left">...</div>
+         <div class="kin-top__right">...</div>
+       </section>
+     ========================= */
+  .kin-top {
+    border: 1px solid var(--lineStrong);
+    background: var(--panelBg);
+    padding: 10px 10px 12px;
+    margin-bottom: 14px;
+
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .kin-top__left,
+  .kin-top__right {
+    min-width: 0;
+  }
+
+  .kin-top__right {
+    border-left: 1px solid var(--line);
+    padding-left: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  /* En el panel top, sin márgenes que creen “aire” raro */
+  .kin-top .kin-block {
+    margin-bottom: 0;
+  }
+  .kin-top .kin-section-title {
+    margin: 0 0 6px;
+  }
+
+  @media (max-width: 820px) {
+    .kin-top {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .kin-top__right {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+  }
+
+  /* =========================
+     7) Tablas MERP/VsD
+     ========================= */
+  .kin-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    border: 1px solid var(--lineStrong);
+
+    thead th {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+
+      text-align: center;
+      padding: 5px 2px;
+
+      background: var(--bar);
+      color: var(--barText);
+      border-bottom: 1px solid var(--lineStrong);
+    }
+
+    tbody td {
+      text-align: center;
+      padding: 6px 2px;
+
+      color: var(--ink);
+      background: transparent;
+      border-top: 1px solid var(--line);
+    }
+
+    thead th + th,
+    tbody td + td {
+      border-left: 1px solid var(--line);
+    }
+  }
+
+  .kin-table--tight {
+    thead th {
+      padding: 5px 2px;
+    }
+    tbody td {
+      padding: 5px 2px;
+    }
+  }
+
+  /* =========================
+     8) Inputs numéricos (tabla)
+     - Ahora sí: gana al reset por especificidad
+     ========================= */
+  .kin-page .kin-num {
+    width: 100%;
+    text-align: center;
+
+    line-height: 1.1;
+    padding: 2px 0;
+
+    border: none;
+    background: transparent;
+
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.18);
+
+    &:hover {
+      border-bottom-color: rgba(0, 0, 0, 0.35);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    &:focus {
+      outline: 1px dashed var(--focus);
+      outline-offset: 2px;
+      border-bottom-color: transparent;
+      background: rgba(255, 255, 255, 0.24);
+    }
+  }
+
+  /* =========================
+     9) Starting Wealth (campo inline)
+     ========================= */
+  .kin-inline-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .kin-page .kin-inline-input {
+    width: 110px;
+    padding: 4px 6px;
+    font-size: 13px;
+
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    background: rgba(0, 0, 0, 0.02);
+    outline: none;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.035);
+    }
+
+    &:focus {
+      outline: 1px dashed var(--focus);
+      outline-offset: 2px;
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  /* =========================
+     10) Textareas (cuaderno)
+     - Ahora sí: borde/fondo/padding visibles
+     ========================= */
+  .kin-page .kin-textarea,
+  .kin-page .kin-body {
+    width: 100%;
+
+    border: 1px solid var(--fieldBorder);
+    background: var(--fieldBg);
+    border-radius: 2px;
+
+    padding: 10px 10px;
+    line-height: 1.38;
+
+    outline: none;
+    resize: vertical;
+
+    &:hover {
+      background: var(--fieldBgHover);
+    }
+
+    &:focus {
+      outline: 1px dashed var(--focus);
+      outline-offset: 2px;
+      background: var(--fieldBgFocus);
+    }
+  }
+
+  .kin-page .kin-textarea {
+    font-size: 13px;
+  }
+  .kin-page .kin-body {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* =========================
+     11) Ajustes de “sensación” (menos raro, más libro)
+     ========================= */
+  /* Reduce el “vacío” bajo la tabla izquierda haciendo el panel más compacto */
+  .kin-top {
+    padding: 10px;
+  }
+
+  /* En el panel, si quieres aún más compactación */
+  .kin-top .kin-section-title {
+    margin-bottom: 5px;
+  }
+
+  /* Evita scroll horizontal si algo se desborda */
+  .kin-page,
+  .kin-top,
+  .kin-table {
+    max-width: 100%;
+  }
+}

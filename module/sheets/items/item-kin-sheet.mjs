@@ -5,14 +5,21 @@ export class VsDKinSheet extends HandlebarsApplicationMixin(
 ) {
   static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, {
     id: "vsd-kin-sheet",
-    classes: ["vsd", "sheet", "item", "kin"],
+    classes: ["vsd", "sheet", "item", "kin", "vsd-kin-section"],
     tag: "form",
     form: {
       handler: VsDKinSheet.#onSubmit,
       submitOnChange: true,
       closeOnSubmit: false,
     },
-    window: { resizable: true },
+    window: {
+      resizable: true,
+      title: true,
+    },
+    position: {
+      width: 760,
+      height: 780,
+    },
   });
 
   static PARTS = {
@@ -31,7 +38,12 @@ export class VsDKinSheet extends HandlebarsApplicationMixin(
     context.system = this.document.system;
 
     // Choices útiles
-    context.qualityChoices = ["low", "normal", "superior", "masterwork"];
+    context.qualityChoices = {
+      low: "low",
+      normal: "normal",
+      superior: "superior",
+      masterwork: "masterwork",
+    };
 
     return context;
   }

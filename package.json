@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "CSS compiler for the VsD system",
   "scripts": {
-    "build": "sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --no-source-map",
-    "watch": "sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch"
+    "build": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --no-source-map",
+    "watch": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch"
   },
   "browserslist": [
     "last 3 versions"
@@ -13,6 +13,8 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "sass": "^1.53.0"
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.346.0-beta.20250812191140",
+    "sass": "^1.96.0",
+    "typescript": "^5.9.3"
   }
 }
