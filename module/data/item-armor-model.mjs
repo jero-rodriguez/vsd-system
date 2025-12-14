@@ -1,9 +1,9 @@
-import VsDItemBaseModel from "./base-item-model.mjs";
+import VsDItemEquipableModel from "./item-equipable-model.mjs";
 
 const ARMOR_TYPE = Object.freeze(["NA", "LA", "ME", "HE"]);
 const requiredInteger = { required: true, nullable: false, integer: true };
 
-export default class VsDArmor extends VsDItemBaseModel {
+export default class VsDArmor extends VsDItemEquipableModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();

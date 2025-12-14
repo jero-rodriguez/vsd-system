@@ -37,13 +37,11 @@ export class VsDKinSheet extends HandlebarsApplicationMixin(
   }
 
   static async #onSubmit(event, form, formData) {
-    console.log("KIN SUBMIT", formData.object);
     // formData ya viene “flattened” con keys tipo "system.stats.brn"
     const updateData = formData.object;
 
     // Limpieza mínima: arrays vacíos, etc. (opcional)
     // Si en tu HBS introduces textarea para traits por líneas, aquí es donde lo parseas.
-
     return this.document.update(updateData);
   }
 }
