@@ -1,0 +1,222 @@
+.vsd-kin-section {
+  /* 1) Scroll */
+  overflow: auto;
+  max-height: 100%;
+
+  /* 2) Base clean */
+  background: #fff;
+  color: #111;
+
+  /* Evita herencias de tema para tipografías en inputs */
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+  /* 3) Reset mínimo de elementos típicos de Foundry */
+  input,
+  select,
+  textarea,
+  button {
+    color: inherit;
+    font: inherit;
+    background: transparent;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    border: none;
+    box-shadow: none;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  /* Arregla tablas: tu screenshot muestra fondos oscuros heredados */
+  table {
+    background: transparent;
+  }
+
+  .kin-table thead th,
+  .kin-table tbody td {
+    background: transparent;
+    color: #111;
+  }
+
+  /* 4) Ancho y padding del “papel” */
+  .kin-page {
+    width: 720px;
+    margin: 0 auto;
+    padding: 20px 22px;
+    background: #fff;
+  }
+
+  .kin-page {
+    width: 720px;
+    padding: 20px 22px;
+    background: #fff;
+    color: #111;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+
+  .kin-titlebar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .kin-title {
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    text-align: center;
+    border: none;
+    background: transparent;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .kin-ornament {
+    height: 18px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(#111, #111) 0 50%/100% 2px no-repeat,
+        radial-gradient(circle at 10px 50%, #111 2px, transparent 3px) 0 50%/18px
+          18px repeat-x;
+    }
+  }
+
+  .kin-block {
+    margin-bottom: 16px;
+  }
+
+  .kin-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0 0 6px;
+    color: #2b2b2b;
+  }
+
+  .kin-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom: 8px;
+
+    thead th {
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px 2px;
+      /* fondo del encabezado */
+      background: #2f2b30;
+      /* CLAVE: color del texto */
+      color: #e6e1d8;
+      border-top: 2px solid #111;
+      border-bottom: 1px solid #111;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    tbody td {
+      text-align: center;
+      padding: 6px 2px;
+      color: #111;
+      background: transparent;
+      border-bottom: 2px solid #111;
+    }
+  }
+
+  .kin-table--tight {
+    margin-top: 4px;
+  }
+
+  .kin-num {
+    width: 100%;
+    text-align: center;
+    border: none;
+    background: transparent;
+
+    &:focus {
+      outline: 1px dashed rgba(0, 0, 0, 0.35);
+      outline-offset: 2px;
+    }
+  }
+
+  .kin-textarea,
+  .kin-body {
+    width: 100%;
+    border: none;
+    background: transparent;
+    resize: vertical;
+    padding: 0;
+
+    &:focus {
+      outline: 1px dashed rgba(0, 0, 0, 0.35);
+      outline-offset: 2px;
+    }
+  }
+
+  .kin-body {
+    font-size: 14px;
+    line-height: 1.38;
+    margin: 0;
+  }
+
+  .kin-inline-input {
+    font-size: 13px;
+    border: none;
+    background: transparent;
+    width: 120px;
+
+    &:focus {
+      outline: 1px dashed rgba(0, 0, 0, 0.35);
+      outline-offset: 2px;
+    }
+  }
+
+  .kin-meta {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+    .kin-meta-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+
+      label {
+        width: 90px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      input[type="text"],
+      select {
+        flex: 1;
+      }
+    }
+
+    .kin-meta-checks {
+      display: flex;
+      gap: 12px;
+
+      label {
+        width: auto;
+        font-weight: 600;
+      }
+    }
+  }
+}

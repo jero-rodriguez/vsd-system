@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .kin-page {
+            width: 720px;
+            padding: 20px 22px;
+            background: #fff;
+            color: #111;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+
+        /* Title */
+        .kin-titlebar {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .kin-title {
+            font-size: 38px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .kin-ornament {
+            height: 18px;
+            position: relative;
+        }
+
+        .kin-ornament::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(#111, #111) 0 50%/100% 2px no-repeat,
+                radial-gradient(circle at 10px 50%, #111 2px, transparent 3px) 0 50%/18px 18px repeat-x;
+        }
+
+        /* Blocks */
+        .kin-block {
+            margin-bottom: 16px;
+        }
+
+        /* Section titles */
+        .kin-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            font-style: italic;
+            margin: 0 0 6px;
+        }
+
+        /* Tables */
+        .kin-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin-bottom: 8px;
+        }
+
+        .kin-table thead th {
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            padding: 6px 2px;
+            border-top: 2px solid #111;
+            border-bottom: 1px solid #111;
+        }
+
+        .kin-table tbody td {
+            font-size: 12px;
+            text-align: center;
+            padding: 6px 2px;
+            border-bottom: 2px solid #111;
+        }
+
+        .kin-table--tight {
+            margin-top: 4px;
+        }
+
+        /* Text */
+        .kin-body {
+            font-size: 14px;
+            line-height: 1.38;
+            margin: 0;
+        }
+
+        .kin-text {
+            font-size: 13px;
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        /* Lists */
+        .kin-bullets {
+            margin: 0 0 0 18px;
+            padding: 0;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .kin-bullets li {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="kin-page kin-single-column">
+        <div class="kin-titlebar">
+            <span class="kin-ornament"></span>
+            <h1 class="kin-title">Man</h1>
+            <span class="kin-ornament"></span>
+        </div>
+
+        <!-- MODIFIERS -->
+        <section class="kin-block">
+            <table class="kin-table">
+                <thead>
+                    <tr>
+                        <th>BRN</th>
+                        <th>SWI</th>
+                        <th>FOR</th>
+                        <th>WIT</th>
+                        <th>WSD</th>
+                        <th>BEA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>+5</td>
+                        <td>+0</td>
+                        <td>+0</td>
+                        <td>+0</td>
+                        <td>+0</td>
+                        <td>+0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="kin-table kin-table--tight">
+                <thead>
+                    <tr>
+                        <th>HP</th>
+                        <th>MP</th>
+                        <th>TSR</th>
+                        <th>WSR</th>
+                        <th>BPs</th>
+                        <th>WL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>30</td>
+                        <td>+0</td>
+                        <td>+0</td>
+                        <td>+0</td>
+                        <td>6</td>
+                        <td>+0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SPECIAL TRAITS -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Special Traits</h2>
+            <ul class="kin-bullets">
+                <li><em>Specialization</em>: Men get a +10 bonus to any one Skill of their choice.</li>
+            </ul>
+        </section>
+
+        <!-- SUGGESTED CULTURES -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Suggested Cultures</h2>
+            <p class="kin-text">Any but Deep, Fey, or Marauding.</p>
+        </section>
+
+        <!-- STARTING WEALTH -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Starting Wealth Level</h2>
+            <p class="kin-text">0</p>
+        </section>
+
+        <!-- BACKGROUND OPTIONS -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Background Options</h2>
+            <p class="kin-text">6 Background Points.</p>
+        </section>
+
+        <!-- DESCRIPTION -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Description</h2>
+            <p class="kin-body">
+                The Mannish race is the most numerous and adaptable of all Kins. Men of all sizes and colors can be
+                found
+                throughout the land,
+                valiantly struggling against the forces of the Darkmaster, and even serving under His rule, either
+                willingly
+                or as slaves to His
+                ruinous power.
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>

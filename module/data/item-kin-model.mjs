@@ -61,7 +61,7 @@ export default class VsDKinModel extends VsDItemBaseModel {
       }),
       backgroundPoints: new fields.NumberField({
         ...requiredInteger,
-        initial: 4,
+        initial: 0,
       }),
       wealthLevelBonus: new fields.NumberField({
         ...requiredInteger,

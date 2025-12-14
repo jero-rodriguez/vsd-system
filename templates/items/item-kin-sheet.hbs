@@ -1,72 +1,104 @@
-<section class="vsd-kin-sheet" autocomplete="off">
-    <header>
-        <div>
-            <label>Name</label>
-            <input type="text" name="name" value="{{item.name}}" />
+<section class="vsd-kin-sheet vsd-kin-section" autocomplete="off">
+    <div class="kin-page kin-single-column">
+        <div class="kin-titlebar">
+            <span class="kin-ornament" aria-hidden="true"></span>
+            <input class="kin-title" type="text" name="name" value="{{item.name}}" placeholder="Kin Name" />
+            <span class="kin-ornament" aria-hidden="true"></span>
         </div>
 
-        <div>
-            <label>Code</label>
-            <input type="text" name="system.code" value="{{system.code}}" />
-        </div>
+        <!-- MODIFIERS -->
+        <section class="kin-block">
+            <table class="kin-table">
+                <thead>
+                    <tr>
+                        <th>BRN</th>
+                        <th>SWI</th>
+                        <th>FOR</th>
+                        <th>WIT</th>
+                        <th>WSD</th>
+                        <th>BEA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input class="kin-num" type="number" name="system.stats.brn" value="{{system.stats.brn}}" />
+                        </td>
+                        <td><input class="kin-num" type="number" name="system.stats.swi" value="{{system.stats.swi}}" />
+                        </td>
+                        <td><input class="kin-num" type="number" name="system.stats.for" value="{{system.stats.for}}" />
+                        </td>
+                        <td><input class="kin-num" type="number" name="system.stats.wit" value="{{system.stats.wit}}" />
+                        </td>
+                        <td><input class="kin-num" type="number" name="system.stats.wsd" value="{{system.stats.wsd}}" />
+                        </td>
+                        <td><input class="kin-num" type="number" name="system.stats.bea" value="{{system.stats.bea}}" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <section>
-            <h2>Description</h2>
-            <textarea name="system.description" rows="6">{{system.description}}</textarea>
+            <table class="kin-table kin-table--tight">
+                <thead>
+                    <tr>
+                        <th>HP</th>
+                        <th>MP</th>
+                        <th>TSR</th>
+                        <th>WSR</th>
+                        <th>BPs</th>
+                        <th>WL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input class="kin-num" type="number" name="system.resources.hitPoints"
+                                value="{{system.resources.hitPoints}}" min="0" /></td>
+                        <td><input class="kin-num" type="number" name="system.resources.magicPoints"
+                                value="{{system.resources.magicPoints}}" /></td>
+                        <td><input class="kin-num" type="number" name="system.resources.tsr"
+                                value="{{system.resources.tsr}}" /></td>
+                        <td><input class="kin-num" type="number" name="system.resources.wsr"
+                                value="{{system.resources.wsr}}" /></td>
+                        <td><input class="kin-num" type="number" name="system.resources.backgroundPoints"
+                                value="{{system.resources.backgroundPoints}}" /></td>
+                        <td><input class="kin-num" type="number" name="system.resources.wealthLevelBonus"
+                                value="{{system.resources.wealthLevelBonus}}" /></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
-        <section>
-            <h2>Kin Modifiers: Stats</h2>
-            <div class="grid">
-                <div><label>BRN</label><input type="number" name="system.stats.brn" value="{{system.stats.brn}}" />
-                </div>
-                <div><label>SWI</label><input type="number" name="system.stats.swi" value="{{system.stats.swi}}" />
-                </div>
-                <div><label>FOR</label><input type="number" name="system.stats.for" value="{{system.stats.for}}" />
-                </div>
-                <div><label>WIT</label><input type="number" name="system.stats.wit" value="{{system.stats.wit}}" />
-                </div>
-                <div><label>WSD</label><input type="number" name="system.stats.wsd" value="{{system.stats.wsd}}" />
-                </div>
-                <div><label>BEA</label><input type="number" name="system.stats.bea" value="{{system.stats.bea}}" />
-                </div>
-            </div>
+        <!-- SPECIAL TRAITS -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Special Traits</h2>
+            <textarea class="kin-textarea" name="system.specialTraits" rows="6">{{system.specialTraits}}</textarea>
         </section>
 
-        <section>
-            <h2>Kin Modifiers: Resources</h2>
-            <div class="grid">
-                <div><label>HP</label><input type="number" name="system.resources.hitPoints"
-                        value="{{system.resources.hitPoints}}" min="0" /></div>
-                <div><label>Max HP</label><input type="number" name="system.resources.maxHitPoints"
-                        value="{{system.resources.maxHitPoints}}" min="0" /></div>
-                <div><label>MP</label><input type="number" name="system.resources.magicPoints"
-                        value="{{system.resources.magicPoints}}" /></div>
-                <div><label>TSR</label><input type="number" name="system.resources.tsr"
-                        value="{{system.resources.tsr}}" />
-                </div>
-                <div><label>WSR</label><input type="number" name="system.resources.wsr"
-                        value="{{system.resources.wsr}}" />
-                </div>
-                <div><label>Background Pts</label><input type="number" name="system.resources.backgroundPoints"
-                        value="{{system.resources.backgroundPoints}}" /></div>
-                <div><label>Wealth Bonus</label><input type="number" name="system.resources.wealthLevelBonus"
-                        value="{{system.resources.wealthLevelBonus}}" /></div>
-            </div>
-
-            <div>
-                <label>Initial Wealth Level</label>
-                <input type="number" name="system.initialWealthLevel" value="{{system.initialWealthLevel}}" min="0" />
-            </div>
+        <!-- SUGGESTED CULTURES -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Suggested Cultures</h2>
+            <textarea class="kin-textarea" name="system.suggestedCultures"
+                rows="3">{{system.suggestedCultures}}</textarea>
         </section>
 
-        <section>
-            <h2>Special Traits</h2>
-            <textarea name="system.specialTraits" rows="6">{{system.specialTraits}}</textarea>
+        <!-- STARTING WEALTH -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Starting Wealth Level</h2>
+            <input class="kin-inline-input" type="number" name="system.initialWealthLevel"
+                value="{{system.initialWealthLevel}}" min="0" />
         </section>
 
-        <section>
-            <h2>Suggested Cultures</h2>
-            <textarea name="system.suggestedCultures" rows="6">{{system.suggestedCultures}}</textarea>
+        <!-- BACKGROUND OPTIONS -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Background Options</h2>
+            <input class="kin-inline-input" type="number" name="system.resources.backgroundPoints"
+                value="{{system.resources.backgroundPoints}}" />
         </section>
+
+        <!-- DESCRIPTION -->
+        <section class="kin-block">
+            <h2 class="kin-section-title">Description</h2>
+            <textarea class="kin-body" name="system.description" rows="6">{{system.description}}</textarea>
+        </section>
+    </div>
+
 </section>
