@@ -17,6 +17,7 @@ const STAT_DEFINITIONS = Object.freeze({
   wits: { code: "wit" },
   wisdom: { code: "wsd" },
   bearing: { code: "bea" },
+  none: { code: "-" },
 });
 
 const MAGIC_STAT_KEYS = Object.freeze({
@@ -63,7 +64,7 @@ function makeSkillSchema(fields, requiredInteger) {
     stat: new fields.StringField({
       initial: "",
       blank: true,
-      choices: SKILL_STATS,
+      choices: STAT_DEFINITIONS,
     }),
 
     ranks: new fields.NumberField({

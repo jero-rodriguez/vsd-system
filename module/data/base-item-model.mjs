@@ -2,7 +2,7 @@ import VsDDataModel from "./base-model.mjs";
 
 const ITEM_QUALITY = Object.freeze(["low", "normal", "superior", "masterwork"]);
 
-export default class VsDItemBase extends VsDDataModel {
+export default class VsDItemBaseModel extends VsDDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const schema = {};

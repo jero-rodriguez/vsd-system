@@ -1,11 +1,10 @@
-import { VsDItemBaseModel } from "./base-item-model.mjs";
+import VsDItemBaseModel from "./base-item-model.mjs";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
 
 export default class VsDKinModel extends VsDItemBaseModel {
   static defineSchema() {
-    const fields = foundry.data.fields;
     const schema = super.defineSchema();
 
     // Modificadores a Stats (tabla de Kin Modifiers)
@@ -77,16 +76,16 @@ export default class VsDKinModel extends VsDItemBaseModel {
     });
 
     // Traits especiales de la Kin
-    schema.specialTraits = new fields.ArrayField(
-      new fields.StringField({ initial: "", required: false, blank: true }),
-      { required: false }
-    );
+    schema.specialTraits = new fields.StringField({
+      initial: "",
+      blank: true,
+    });
 
     // Culturas sugeridas (guardamos los codes de Culture o texto libre)
-    schema.suggestedCultures = new fields.ArrayField(
-      new fields.StringField({ initial: "", required: false, blank: true }),
-      { required: false }
-    );
+    schema.suggestedCultures = new fields.StringField({
+      initial: "",
+      blank: true,
+    });
 
     return schema;
   }

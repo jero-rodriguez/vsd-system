@@ -1,4 +1,4 @@
-import { VsDItemBaseModel } from "./base-item-model.mjs";
+import VsDItemBaseModel from "./base-item-model.mjs";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
