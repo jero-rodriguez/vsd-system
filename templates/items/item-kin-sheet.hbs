@@ -10,73 +10,63 @@
             <input type="text" name="system.code" value="{{system.code}}" />
         </div>
 
-        <div>
-            <label>Quality</label>
-            <select name="system.quality">
-                {{selectOptions qualityChoices selected=system.quality}}
-            </select>
-        </div>
+        <section>
+            <h2>Description</h2>
+            <textarea name="system.description" rows="6">{{system.description}}</textarea>
+        </section>
 
-        <div>
-            <label>Magical</label>
-            <input type="checkbox" name="system.magic.isMagical" {{checked system.magic.isMagical}} />
-        </div>
-
-        <div>
-            <label>Cursed</label>
-            <input type="checkbox" name="system.magic.isCursed" {{checked system.magic.isCursed}} />
-        </div>
-    </header>
-
-    <section>
-        <h2>Description</h2>
-        <textarea name="system.description" rows="6">{{system.description}}</textarea>
-    </section>
-
-    <section>
-        <h2>Kin Modifiers: Stats</h2>
-        <div class="grid">
-            <div><label>BRN</label><input type="number" name="system.stats.brn" value="{{system.stats.brn}}" /></div>
-            <div><label>SWI</label><input type="number" name="system.stats.swi" value="{{system.stats.swi}}" /></div>
-            <div><label>FOR</label><input type="number" name="system.stats.for" value="{{system.stats.for}}" /></div>
-            <div><label>WIT</label><input type="number" name="system.stats.wit" value="{{system.stats.wit}}" /></div>
-            <div><label>WSD</label><input type="number" name="system.stats.wsd" value="{{system.stats.wsd}}" /></div>
-            <div><label>BEA</label><input type="number" name="system.stats.bea" value="{{system.stats.bea}}" /></div>
-        </div>
-    </section>
-
-    <section>
-        <h2>Kin Modifiers: Resources</h2>
-        <div class="grid">
-            <div><label>HP</label><input type="number" name="system.resources.hitPoints"
-                    value="{{system.resources.hitPoints}}" min="0" /></div>
-            <div><label>Max HP</label><input type="number" name="system.resources.maxHitPoints"
-                    value="{{system.resources.maxHitPoints}}" min="0" /></div>
-            <div><label>MP</label><input type="number" name="system.resources.magicPoints"
-                    value="{{system.resources.magicPoints}}" /></div>
-            <div><label>TSR</label><input type="number" name="system.resources.tsr" value="{{system.resources.tsr}}" />
+        <section>
+            <h2>Kin Modifiers: Stats</h2>
+            <div class="grid">
+                <div><label>BRN</label><input type="number" name="system.stats.brn" value="{{system.stats.brn}}" />
+                </div>
+                <div><label>SWI</label><input type="number" name="system.stats.swi" value="{{system.stats.swi}}" />
+                </div>
+                <div><label>FOR</label><input type="number" name="system.stats.for" value="{{system.stats.for}}" />
+                </div>
+                <div><label>WIT</label><input type="number" name="system.stats.wit" value="{{system.stats.wit}}" />
+                </div>
+                <div><label>WSD</label><input type="number" name="system.stats.wsd" value="{{system.stats.wsd}}" />
+                </div>
+                <div><label>BEA</label><input type="number" name="system.stats.bea" value="{{system.stats.bea}}" />
+                </div>
             </div>
-            <div><label>WSR</label><input type="number" name="system.resources.wsr" value="{{system.resources.wsr}}" />
+        </section>
+
+        <section>
+            <h2>Kin Modifiers: Resources</h2>
+            <div class="grid">
+                <div><label>HP</label><input type="number" name="system.resources.hitPoints"
+                        value="{{system.resources.hitPoints}}" min="0" /></div>
+                <div><label>Max HP</label><input type="number" name="system.resources.maxHitPoints"
+                        value="{{system.resources.maxHitPoints}}" min="0" /></div>
+                <div><label>MP</label><input type="number" name="system.resources.magicPoints"
+                        value="{{system.resources.magicPoints}}" /></div>
+                <div><label>TSR</label><input type="number" name="system.resources.tsr"
+                        value="{{system.resources.tsr}}" />
+                </div>
+                <div><label>WSR</label><input type="number" name="system.resources.wsr"
+                        value="{{system.resources.wsr}}" />
+                </div>
+                <div><label>Background Pts</label><input type="number" name="system.resources.backgroundPoints"
+                        value="{{system.resources.backgroundPoints}}" /></div>
+                <div><label>Wealth Bonus</label><input type="number" name="system.resources.wealthLevelBonus"
+                        value="{{system.resources.wealthLevelBonus}}" /></div>
             </div>
-            <div><label>Background Pts</label><input type="number" name="system.resources.backgroundPoints"
-                    value="{{system.resources.backgroundPoints}}" /></div>
-            <div><label>Wealth Bonus</label><input type="number" name="system.resources.wealthLevelBonus"
-                    value="{{system.resources.wealthLevelBonus}}" /></div>
-        </div>
 
-        <div>
-            <label>Initial Wealth Level</label>
-            <input type="number" name="system.initialWealthLevel" value="{{system.initialWealthLevel}}" min="0" />
-        </div>
-    </section>
+            <div>
+                <label>Initial Wealth Level</label>
+                <input type="number" name="system.initialWealthLevel" value="{{system.initialWealthLevel}}" min="0" />
+            </div>
+        </section>
 
-    <section>
-        <h2>Special Traits</h2>
-        <textarea name="system.specialTraits" rows="6">{{system.specialTraits}}</textarea>
-    </section>
+        <section>
+            <h2>Special Traits</h2>
+            <textarea name="system.specialTraits" rows="6">{{system.specialTraits}}</textarea>
+        </section>
 
-    <section>
-        <h2>Suggested Cultures</h2>
-        <textarea name="system.suggestedCultures" rows="6">{{system.suggestedCultures}}</textarea>
-    </section>
+        <section>
+            <h2>Suggested Cultures</h2>
+            <textarea name="system.suggestedCultures" rows="6">{{system.suggestedCultures}}</textarea>
+        </section>
 </section>

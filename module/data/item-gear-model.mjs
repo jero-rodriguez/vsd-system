@@ -1,8 +1,8 @@
-import VsDItemBaseModel from "./base-item-model.mjs";
+import VsDItemEquipableModel from "./item-equipable-model.mjs";
 
 const requiredInteger = { required: true, nullable: false, integer: true };
 
-export default class VsDGear extends VsDItemBaseModel {
+export default class VsDGear extends VsDItemEquipableModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();

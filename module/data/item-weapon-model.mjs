@@ -1,4 +1,4 @@
-import VsDItemBaseModel from "./base-item-model.mjs";
+import VsDItemEquipableModel from "./item-equipable-model.mjs";
 
 const WEAPON_HANDS = Object.freeze(["1H", "2H", "1H/2H"]);
 const WEAPON_LENGTH = Object.freeze([
@@ -11,7 +11,7 @@ const WEAPON_LENGTH = Object.freeze([
 const WEAPON_CRIT = Object.freeze(["cut", "impact", "pierce", "grapple"]);
 const requiredInteger = { required: true, nullable: false, integer: true };
 
-export default class VsDWeapon extends VsDItemBaseModel {
+export default class VsDWeapon extends VsDItemEquipableModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();
