@@ -1,649 +1,184 @@
-@charset "UTF-8";
-/* Carga módulos */
-/* Recomendación: NO uses @import url(...) en Sass.
-   Mejor mete la fuente como <link> en el HTML, o déjala como CSS puro aparte.
-   Si quieres mantenerlo aquí, lo dejamos como "plain CSS import" (ver nota abajo). */
-/* Plain CSS import permitido */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-.vsd-system .window-app {
-  font-family: "Roboto", sans-serif;
-}
-.vsd-system .rollable:hover, .vsd-system .rollable:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
-  cursor: pointer;
+/* kin.css
+   Kin sheet (Foundry VTT v13, Sheets V2) - maquetación básica y fiel a Foundry
+   - Sin ornamentos
+   - Reutiliza variables nativas de Foundry (cuando existan)
+   - No toca la window header (iconos de cerrar, etc.)
+*/
+
+/* Contenedor principal */
+.vsd-kin-sheet {
+  padding: 8px 10px;
 }
 
-.vsd-system .grid,
-.vsd-system .grid-2col {
-  display: grid;
-  grid-column: span 2/span 2;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+/* Header tipo Foundry */
+.vsd-kin-sheet .sheet-header {
+  margin-bottom: 8px;
+}
+
+.vsd-kin-sheet .sheet-header .charname {
+  margin: 0;
+}
+
+.vsd-kin-sheet .sheet-header .charname input {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Fieldsets y legend (bloques) */
+.vsd-kin-sheet .vsd-fieldset {
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  border-radius: 4px;
+  padding: 8px;
   margin: 10px 0;
-  padding: 0;
 }
-.vsd-system .grid-3col {
-  grid-column: span 3/span 3;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+.vsd-kin-sheet .vsd-fieldset > legend {
+  padding: 0 6px;
+  font-weight: 600;
+  font-size: 12px;
 }
-.vsd-system .grid-4col {
-  grid-column: span 4/span 4;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+/* Separador simple */
+.vsd-kin-sheet .vsd-sep {
+  border: none;
+  border-top: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  margin: 8px 0;
 }
-.vsd-system .grid-5col {
-  grid-column: span 5/span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+/* Grid de celdas numéricas */
+.vsd-kin-sheet .vsd-grid {
+  display: grid;
+  gap: 8px;
+  margin: 6px 0;
 }
-.vsd-system .grid-6col {
-  grid-column: span 6/span 6;
+
+.vsd-kin-sheet .vsd-grid--6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
-.vsd-system .grid-7col {
-  grid-column: span 7/span 7;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-.vsd-system .grid-8col {
-  grid-column: span 8/span 8;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-}
-.vsd-system .grid-9col {
-  grid-column: span 9/span 9;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-.vsd-system .grid-10col {
-  grid-column: span 10/span 10;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-.vsd-system .grid-11col {
-  grid-column: span 11/span 11;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-}
-.vsd-system .grid-12col {
-  grid-column: span 12/span 12;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-.vsd-system .grid-start-2 {
-  grid-column-start: 2;
-}
-.vsd-system .grid-start-3 {
-  grid-column-start: 3;
-}
-.vsd-system .grid-start-4 {
-  grid-column-start: 4;
-}
-.vsd-system .grid-start-5 {
-  grid-column-start: 5;
-}
-.vsd-system .grid-start-6 {
-  grid-column-start: 6;
-}
-.vsd-system .grid-start-7 {
-  grid-column-start: 7;
-}
-.vsd-system .grid-start-8 {
-  grid-column-start: 8;
-}
-.vsd-system .grid-start-9 {
-  grid-column-start: 9;
-}
-.vsd-system .grid-start-10 {
-  grid-column-start: 10;
-}
-.vsd-system .grid-start-11 {
-  grid-column-start: 11;
-}
-.vsd-system .grid-start-12 {
-  grid-column-start: 12;
-}
-.vsd-system .grid-span-2 {
-  grid-column-end: span 2;
-}
-.vsd-system .grid-span-3 {
-  grid-column-end: span 3;
-}
-.vsd-system .grid-span-4 {
-  grid-column-end: span 4;
-}
-.vsd-system .grid-span-5 {
-  grid-column-end: span 5;
-}
-.vsd-system .grid-span-6 {
-  grid-column-end: span 6;
-}
-.vsd-system .grid-span-7 {
-  grid-column-end: span 7;
-}
-.vsd-system .grid-span-8 {
-  grid-column-end: span 8;
-}
-.vsd-system .grid-span-9 {
-  grid-column-end: span 9;
-}
-.vsd-system .grid-span-10 {
-  grid-column-end: span 10;
-}
-.vsd-system .grid-span-11 {
-  grid-column-end: span 11;
-}
-.vsd-system .grid-span-12 {
-  grid-column-end: span 12;
+
+.vsd-kin-sheet .vsd-cell {
+  min-width: 0;
 }
 
-.vsd-system .flex-group-center,
-.vsd-system .flex-group-left,
-.vsd-system .flex-group-right {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.vsd-system .flex-group-left {
-  justify-content: flex-start;
-  text-align: left;
-}
-.vsd-system .flex-group-right {
-  justify-content: flex-end;
-  text-align: right;
-}
-.vsd-system .flexshrink {
-  flex: 0;
-}
-.vsd-system .flex-between {
-  justify-content: space-between;
-}
-.vsd-system .flexlarge {
-  flex: 2;
-}
-.vsd-system .align-left {
-  justify-content: flex-start;
-  text-align: left;
-}
-.vsd-system .align-right {
-  justify-content: flex-end;
-  text-align: right;
-}
-.vsd-system .align-center {
-  justify-content: center;
-  text-align: center;
+.vsd-kin-sheet .vsd-cell label {
+  display: block;
+  font-size: 11px;
+  opacity: 0.85;
+  margin-bottom: 2px;
 }
 
-.vsd-system .item-form {
-  font-family: "Roboto", sans-serif;
-}
-.vsd-system .sheet-header {
-  flex: 0 auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-.vsd-system .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
-}
-.vsd-system .sheet-header .header-fields {
-  flex: 1;
-}
-.vsd-system .sheet-header h1.charname {
-  height: 50px;
-  padding: 0px;
-  margin: 5px 0;
-  border-bottom: 0;
-}
-.vsd-system .sheet-header h1.charname input {
+.vsd-kin-sheet .vsd-cell input {
   width: 100%;
-  height: 100%;
-  margin: 0;
-}
-.vsd-system .sheet-tabs {
-  flex: 0;
-}
-.vsd-system .sheet-body,
-.vsd-system .sheet-body .tab,
-.vsd-system .sheet-body .tab .editor {
-  height: 100%;
-}
-.vsd-system .tox .tox-editor-container {
-  background: #fff;
-}
-.vsd-system .tox .tox-edit-area {
-  padding: 0 8px;
-}
-
-.vsd-system .resource-label {
-  font-weight: bold;
-}
-
-.vsd-system .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px groove #eeede0;
-  font-weight: bold;
-}
-.vsd-system .items-header > * {
-  font-size: 14px;
   text-align: center;
 }
-.vsd-system .items-header .item-name {
-  font-weight: bold;
-  padding-left: 5px;
-  text-align: left;
+
+/* Estilo de form-group compatible con Foundry */
+.vsd-kin-sheet .form-group {
   display: flex;
-}
-.vsd-system .items-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  color: #444;
-}
-.vsd-system .items-list .item-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.vsd-system .items-list .item-name {
-  flex: 2;
-  margin: 0;
-  overflow: hidden;
-  font-size: 13px;
-  text-align: left;
   align-items: center;
-  display: flex;
-}
-.vsd-system .items-list .item-name h3,
-.vsd-system .items-list .item-name h4 {
-  margin: 0;
-  white-space: nowrap;
-  overflow-x: hidden;
-}
-.vsd-system .items-list .item-controls {
-  display: flex;
-  flex: 0 0 100px;
-  justify-content: flex-end;
-}
-.vsd-system .items-list .item-controls a {
-  font-size: 12px;
-  text-align: center;
-  margin: 0 6px;
-}
-.vsd-system .items-list .item {
-  align-items: center;
-  padding: 0 2px;
-  border-bottom: 1px solid #c9c7b8;
-}
-.vsd-system .items-list .item:last-child {
-  border-bottom: none;
-}
-.vsd-system .items-list .item .item-name {
-  color: #191813;
-}
-.vsd-system .items-list .item .item-name .item-image {
-  flex: 0 0 30px;
-  height: 30px;
-  background-size: 30px;
-  border: none;
-  margin-right: 5px;
-}
-.vsd-system .items-list .item-prop {
-  text-align: center;
-  border-left: 1px solid #c9c7b8;
-  border-right: 1px solid #c9c7b8;
-  font-size: 12px;
-}
-.vsd-system .items-list .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px groove #eeede0;
-  font-weight: bold;
-}
-.vsd-system .items-list .items-header > * {
-  font-size: 12px;
-  text-align: center;
-}
-.vsd-system .items-list .items-header .item-name {
-  padding-left: 5px;
-  text-align: left;
-}
-.vsd-system .item-formula {
-  flex: 0 0 200px;
-  padding: 0 8px;
+  gap: 10px;
+  margin: 6px 0;
 }
 
-.vsd-system .effects .item .effect-source,
-.vsd-system .effects .item .effect-duration,
-.vsd-system .effects .item .effect-controls {
-  text-align: center;
-  border-left: 1px solid #c9c7b8;
-  border-right: 1px solid #c9c7b8;
+.vsd-kin-sheet .form-group > label {
+  flex: 0 0 170px;
+  font-weight: 600;
   font-size: 12px;
-}
-.vsd-system .effects .item .effect-controls {
-  border: none;
+  line-height: 1.2;
 }
 
-/* _kin.scss (SAFE V2)
-   - No fuerza scroll ni alturas en el root
-   - No toca header de la ventana
-   - Resets limitados a elementos dentro de .kin-page
-*/
-.vsd-kin-section {
-  /* =========================
-     1) Variables (tema local)
-     ========================= */
-  --paper: #ffffff;
-  --ink: #111111;
-  --muted: #2b2b2b;
-  --bar: #2f2b30;
-  --barText: #e6e1d8;
-  --line: rgba(0, 0, 0, 0.18);
-  --lineStrong: #111111;
-  --panelBg: rgba(0, 0, 0, 0.015);
-  --fieldBg: rgba(245, 240, 228, 0.65);
-  --focus: rgba(0, 0, 0, 0.35);
-  /* IMPORTANTÍSIMO:
-     No poner overflow/max-height aquí.
-     Foundry gestiona el scroll en window-content.
-  */
-  background: transparent;
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", Times, serif;
-  /* =========================
-     2) Página (papel)
-     ========================= */
+.vsd-kin-sheet .form-group .form-fields {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
 }
-.vsd-kin-section .kin-page {
-  width: 720px;
-  margin: 0 auto;
-  padding: 18px 18px;
-  background: var(--paper);
-  color: var(--ink);
-  /* Sombra sutil, sin “comerse” el header */
-  box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0, 0, 0, 0.08);
-  /* Evita que elementos anchos provoquen scroll horizontal raro */
-  box-sizing: border-box;
+
+.vsd-kin-sheet .form-group .form-fields input,
+.vsd-kin-sheet .form-group .form-fields select {
+  width: 100%;
 }
-@media (max-width: 820px) {
-  .vsd-kin-section .kin-page {
-    width: auto;
-    margin: 0;
-    padding: 14px 12px;
-    box-shadow: none;
-  }
+
+.vsd-kin-sheet .form-group .form-fields input[type="number"] {
+  max-width: 160px;
 }
-.vsd-kin-section {
-  /* =========================
-     3) Reset mínimo, SOLO dentro del papel
-     (para no afectar controles de Foundry fuera)
-     ========================= */
+
+/* Variante stacked (label arriba, campo abajo) */
+.vsd-kin-sheet .form-group.stacked {
+  display: block;
+  margin: 8px 0;
 }
-.vsd-kin-section .kin-page input,
-.vsd-kin-section .kin-page select,
-.vsd-kin-section .kin-page textarea {
-  color: inherit;
-  font: inherit;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  border-radius: 0;
+
+.vsd-kin-sheet .form-group.stacked > label {
+  display: block;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 12px;
 }
-.vsd-kin-section .kin-page textarea {
+
+/* Textareas */
+.vsd-kin-sheet textarea {
+  width: 100%;
+  min-height: 80px;
   resize: vertical;
 }
-.vsd-kin-section .kin-page table {
-  background: transparent;
-  border-spacing: 0;
+
+.vsd-kin-sheet textarea[name="system.description"] {
+  min-height: 140px;
 }
-.vsd-kin-section {
-  /* =========================
-     4) Titlebar MERP
-     ========================= */
-}
-.vsd-kin-section .kin-titlebar {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.vsd-kin-section .kin-title {
-  width: 100%;
-  padding: 2px 0;
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-}
-.vsd-kin-section .kin-title:focus {
-  outline: 1px dashed var(--focus);
-  outline-offset: 3px;
-}
-.vsd-kin-section .kin-ornament {
-  height: 18px;
-  min-width: 120px;
-  position: relative;
-}
-.vsd-kin-section .kin-ornament::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  display: block;
-  background: linear-gradient(var(--ink), var(--ink)) 0 50%/100% 2px no-repeat, radial-gradient(circle at 10px 50%, var(--ink) 2px, transparent 3px) 0 50%/18px 18px repeat-x;
-  opacity: 0.95;
-}
-@media (max-width: 520px) {
-  .vsd-kin-section .kin-title {
-    font-size: 30px;
-  }
-  .vsd-kin-section .kin-ornament {
-    min-width: 70px;
-  }
-}
-.vsd-kin-section {
-  /* =========================
-     5) Bloques y títulos
-     ========================= */
-}
-.vsd-kin-section .kin-block {
-  margin-bottom: 12px;
-}
-.vsd-kin-section .kin-section-title {
-  font-size: 13px;
-  font-weight: 700;
-  font-style: italic;
-  margin: 0 0 6px;
-  color: var(--muted);
-  min-height: 18px;
-}
-.vsd-kin-section {
-  /* =========================
-     6) PANEL ÚNICO SUPERIOR
-     ========================= */
-}
-.vsd-kin-section .kin-top {
-  border: 1px solid var(--lineStrong);
-  background: var(--panelBg);
-  padding: 10px 10px 12px;
-  margin-bottom: 12px;
-  display: grid;
-  grid-template-columns: 2fr 1.2fr;
-  gap: 12px;
-  align-items: start;
-}
-@media (max-width: 820px) {
-  .vsd-kin-section .kin-top {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-}
-.vsd-kin-section .kin-top__right {
-  border-left: 1px solid var(--line);
-  padding-left: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: stretch;
-}
-@media (max-width: 820px) {
-  .vsd-kin-section .kin-top__right {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid var(--line);
-    padding-top: 10px;
-  }
-}
-.vsd-kin-section {
-  /* En el panel top, sin márgenes extra */
-}
-.vsd-kin-section .kin-top .kin-block {
-  margin-bottom: 0;
-}
-.vsd-kin-section .kin-top .kin-table {
-  margin-bottom: 0;
-}
-.vsd-kin-section {
-  /* =========================
-     7) Tablas MERP/VsD
-     ========================= */
-}
-.vsd-kin-section .kin-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-  border: 1px solid var(--lineStrong);
-}
-.vsd-kin-section .kin-table thead th {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 5px 2px;
-  background: var(--bar);
-  color: var(--barText);
-  border-bottom: 1px solid var(--lineStrong);
-}
-.vsd-kin-section .kin-table tbody td {
-  text-align: center;
-  padding: 6px 2px;
-  color: var(--ink);
-  background: transparent;
-  border-top: 1px solid var(--line);
-}
-.vsd-kin-section .kin-table thead th + th,
-.vsd-kin-section .kin-table tbody td + td {
-  border-left: 1px solid var(--line);
-}
-.vsd-kin-section .kin-table--tight thead th {
-  padding: 5px 2px;
-  font-size: 11px;
-}
-.vsd-kin-section .kin-table--tight tbody td {
-  padding: 5px 2px;
-}
-.vsd-kin-section {
-  /* =========================
-     8) Inputs numéricos
-     ========================= */
-}
-.vsd-kin-section .kin-num {
-  width: 100%;
-  text-align: center;
-  line-height: 1.1;
-  padding: 2px 0;
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.18);
-}
-.vsd-kin-section .kin-num:hover {
-  border-bottom-color: rgba(0, 0, 0, 0.35);
-  background: rgba(255, 255, 255, 0.14);
-}
-.vsd-kin-section .kin-num:focus {
-  outline: 1px dashed var(--focus);
-  outline-offset: 2px;
-  border-bottom-color: transparent;
-  background: rgba(255, 255, 255, 0.24);
-}
-.vsd-kin-section {
-  /* =========================
-     9) Starting Wealth (compacto)
-     ========================= */
-}
-.vsd-kin-section .kin-inline-block {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 6px;
-}
-.vsd-kin-section .kin-inline-input {
-  width: 110px;
+
+/* Inputs: no “reset” agresivo, pero sí consistencia */
+.vsd-kin-sheet input[type="text"],
+.vsd-kin-sheet input[type="number"],
+.vsd-kin-sheet select,
+.vsd-kin-sheet textarea {
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  border-radius: 3px;
   padding: 4px 6px;
-  font-size: 13px;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  background: rgba(0, 0, 0, 0.02);
+  background: var(--color-bg-input, rgba(255, 255, 255, 0.6));
 }
-.vsd-kin-section .kin-inline-input:hover {
-  background: rgba(0, 0, 0, 0.035);
+
+.vsd-kin-sheet input[type="text"]:focus,
+.vsd-kin-sheet input[type="number"]:focus,
+.vsd-kin-sheet select:focus,
+.vsd-kin-sheet textarea:focus {
+  outline: 2px solid var(--color-border-highlight, rgba(0, 0, 0, 0.35));
+  outline-offset: 1px;
 }
-.vsd-kin-section .kin-inline-input:focus {
-  outline: 1px dashed var(--focus);
-  outline-offset: 2px;
-  background: rgba(0, 0, 0, 0.05);
+
+/* Ajustes para que los números en grid queden compactos */
+.vsd-kin-sheet .vsd-grid input[type="number"] {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 6px;
 }
-.vsd-kin-section {
-  /* =========================
-     10) Textareas (cuaderno)
-     ========================= */
+
+/* Responsive: en pantallas estrechas, 6 columnas -> 3 */
+@media (max-width: 820px) {
+  .vsd-kin-sheet .vsd-grid--6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vsd-kin-sheet .form-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .vsd-kin-sheet .form-group > label {
+    flex: none;
+  }
+
+  .vsd-kin-sheet .form-group .form-fields input[type="number"] {
+    max-width: 100%;
+  }
 }
-.vsd-kin-section .kin-textarea,
-.vsd-kin-section .kin-body {
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: var(--fieldBg);
-  border-radius: 2px;
-  padding: 8px 8px;
-  line-height: 1.38;
-}
-.vsd-kin-section .kin-textarea:hover,
-.vsd-kin-section .kin-body:hover {
-  background: rgba(245, 240, 228, 0.78);
-}
-.vsd-kin-section .kin-textarea:focus,
-.vsd-kin-section .kin-body:focus {
-  outline: 1px dashed var(--focus);
-  outline-offset: 2px;
-  background: rgba(245, 240, 228, 0.9);
-}
-.vsd-kin-section .kin-textarea {
-  font-size: 13px;
-}
-.vsd-kin-section .kin-body {
-  font-size: 14px;
-  margin: 0;
-}
-.vsd-kin-section {
-  /* =========================
-     11) Ajustes finos para evitar scroll horizontal en Foundry
-     ========================= */
-}
-.vsd-kin-section .kin-page,
-.vsd-kin-section .kin-top,
-.vsd-kin-section .kin-table {
-  max-width: 100%;
-}
-.vsd-kin-section {
-  /* Por si algún contenido intenta desbordar */
-}
-.vsd-kin-section .kin-top__left,
-.vsd-kin-section .kin-top__right {
-  min-width: 0;
+
+/* Pequeño ajuste para evitar scroll horizontal accidental */
+.vsd-kin-sheet,
+.vsd-kin-sheet * {
+  box-sizing: border-box;
 }
