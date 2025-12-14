@@ -332,195 +332,318 @@
   border: none;
 }
 
+/* _kin.scss (SAFE V2)
+   - No fuerza scroll ni alturas en el root
+   - No toca header de la ventana
+   - Resets limitados a elementos dentro de .kin-page
+*/
 .vsd-kin-section {
-  /* 1) Scroll */
-  overflow: auto;
-  max-height: 100%;
-  /* 2) Base clean */
-  background: #fff;
-  color: #111;
-  /* Evita herencias de tema para tipografías en inputs */
+  /* =========================
+     1) Variables (tema local)
+     ========================= */
+  --paper: #ffffff;
+  --ink: #111111;
+  --muted: #2b2b2b;
+  --bar: #2f2b30;
+  --barText: #e6e1d8;
+  --line: rgba(0, 0, 0, 0.18);
+  --lineStrong: #111111;
+  --panelBg: rgba(0, 0, 0, 0.015);
+  --fieldBg: rgba(245, 240, 228, 0.65);
+  --focus: rgba(0, 0, 0, 0.35);
+  /* IMPORTANTÍSIMO:
+     No poner overflow/max-height aquí.
+     Foundry gestiona el scroll en window-content.
+  */
+  background: transparent;
+  color: var(--ink);
   font-family: Georgia, "Times New Roman", Times, serif;
-  /* 3) Reset mínimo de elementos típicos de Foundry */
-}
-.vsd-kin-section input,
-.vsd-kin-section select,
-.vsd-kin-section textarea,
-.vsd-kin-section button {
-  color: inherit;
-  font: inherit;
-  background: transparent;
-}
-.vsd-kin-section input[type=text],
-.vsd-kin-section input[type=number],
-.vsd-kin-section select,
-.vsd-kin-section textarea {
-  border: none;
-  box-shadow: none;
-}
-.vsd-kin-section textarea {
-  resize: vertical;
-}
-.vsd-kin-section {
-  /* Arregla tablas: tu screenshot muestra fondos oscuros heredados */
-}
-.vsd-kin-section table {
-  background: transparent;
-}
-.vsd-kin-section .kin-table thead th,
-.vsd-kin-section .kin-table tbody td {
-  background: transparent;
-  color: #111;
-}
-.vsd-kin-section {
-  /* 4) Ancho y padding del “papel” */
+  /* =========================
+     2) Página (papel)
+     ========================= */
 }
 .vsd-kin-section .kin-page {
   width: 720px;
   margin: 0 auto;
-  padding: 20px 22px;
-  background: #fff;
+  padding: 18px 18px;
+  background: var(--paper);
+  color: var(--ink);
+  /* Sombra sutil, sin “comerse” el header */
+  box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0, 0, 0, 0.08);
+  /* Evita que elementos anchos provoquen scroll horizontal raro */
+  box-sizing: border-box;
 }
-.vsd-kin-section .kin-page {
-  width: 720px;
-  padding: 20px 22px;
-  background: #fff;
-  color: #111;
-  font-family: Georgia, "Times New Roman", Times, serif;
+@media (max-width: 820px) {
+  .vsd-kin-section .kin-page {
+    width: auto;
+    margin: 0;
+    padding: 14px 12px;
+    box-shadow: none;
+  }
+}
+.vsd-kin-section {
+  /* =========================
+     3) Reset mínimo, SOLO dentro del papel
+     (para no afectar controles de Foundry fuera)
+     ========================= */
+}
+.vsd-kin-section .kin-page input,
+.vsd-kin-section .kin-page select,
+.vsd-kin-section .kin-page textarea {
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  border-radius: 0;
+}
+.vsd-kin-section .kin-page textarea {
+  resize: vertical;
+}
+.vsd-kin-section .kin-page table {
+  background: transparent;
+  border-spacing: 0;
+}
+.vsd-kin-section {
+  /* =========================
+     4) Titlebar MERP
+     ========================= */
 }
 .vsd-kin-section .kin-titlebar {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 .vsd-kin-section .kin-title {
-  font-size: 38px;
+  width: 100%;
+  padding: 2px 0;
+  font-size: 34px;
   font-weight: 700;
-  margin: 0;
   line-height: 1;
   text-align: center;
-  border: none;
-  background: transparent;
-  width: 100%;
 }
 .vsd-kin-section .kin-title:focus {
-  outline: none;
+  outline: 1px dashed var(--focus);
+  outline-offset: 3px;
 }
 .vsd-kin-section .kin-ornament {
   height: 18px;
+  min-width: 120px;
   position: relative;
 }
 .vsd-kin-section .kin-ornament::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(#111, #111) 0 50%/100% 2px no-repeat, radial-gradient(circle at 10px 50%, #111 2px, transparent 3px) 0 50%/18px 18px repeat-x;
+  display: block;
+  background: linear-gradient(var(--ink), var(--ink)) 0 50%/100% 2px no-repeat, radial-gradient(circle at 10px 50%, var(--ink) 2px, transparent 3px) 0 50%/18px 18px repeat-x;
+  opacity: 0.95;
+}
+@media (max-width: 520px) {
+  .vsd-kin-section .kin-title {
+    font-size: 30px;
+  }
+  .vsd-kin-section .kin-ornament {
+    min-width: 70px;
+  }
+}
+.vsd-kin-section {
+  /* =========================
+     5) Bloques y títulos
+     ========================= */
 }
 .vsd-kin-section .kin-block {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .vsd-kin-section .kin-section-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   font-style: italic;
   margin: 0 0 6px;
-  color: #2b2b2b;
+  color: var(--muted);
+  min-height: 18px;
+}
+.vsd-kin-section {
+  /* =========================
+     6) PANEL ÚNICO SUPERIOR
+     ========================= */
+}
+.vsd-kin-section .kin-top {
+  border: 1px solid var(--lineStrong);
+  background: var(--panelBg);
+  padding: 10px 10px 12px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 12px;
+  align-items: start;
+}
+@media (max-width: 820px) {
+  .vsd-kin-section .kin-top {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+.vsd-kin-section .kin-top__right {
+  border-left: 1px solid var(--line);
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+@media (max-width: 820px) {
+  .vsd-kin-section .kin-top__right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+}
+.vsd-kin-section {
+  /* En el panel top, sin márgenes extra */
+}
+.vsd-kin-section .kin-top .kin-block {
+  margin-bottom: 0;
+}
+.vsd-kin-section .kin-top .kin-table {
+  margin-bottom: 0;
+}
+.vsd-kin-section {
+  /* =========================
+     7) Tablas MERP/VsD
+     ========================= */
 }
 .vsd-kin-section .kin-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  margin-bottom: 8px;
+  border: 1px solid var(--lineStrong);
 }
 .vsd-kin-section .kin-table thead th {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  text-align: center;
-  padding: 6px 2px;
-  /* fondo del encabezado */
-  background: #2f2b30;
-  /* CLAVE: color del texto */
-  color: #e6e1d8;
-  border-top: 2px solid #111;
-  border-bottom: 1px solid #111;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  text-align: center;
+  padding: 5px 2px;
+  background: var(--bar);
+  color: var(--barText);
+  border-bottom: 1px solid var(--lineStrong);
 }
 .vsd-kin-section .kin-table tbody td {
   text-align: center;
   padding: 6px 2px;
-  color: #111;
+  color: var(--ink);
   background: transparent;
-  border-bottom: 2px solid #111;
+  border-top: 1px solid var(--line);
 }
-.vsd-kin-section .kin-table--tight {
-  margin-top: 4px;
+.vsd-kin-section .kin-table thead th + th,
+.vsd-kin-section .kin-table tbody td + td {
+  border-left: 1px solid var(--line);
+}
+.vsd-kin-section .kin-table--tight thead th {
+  padding: 5px 2px;
+  font-size: 11px;
+}
+.vsd-kin-section .kin-table--tight tbody td {
+  padding: 5px 2px;
+}
+.vsd-kin-section {
+  /* =========================
+     8) Inputs numéricos
+     ========================= */
 }
 .vsd-kin-section .kin-num {
   width: 100%;
   text-align: center;
-  border: none;
-  background: transparent;
+  line-height: 1.1;
+  padding: 2px 0;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.18);
+}
+.vsd-kin-section .kin-num:hover {
+  border-bottom-color: rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.14);
 }
 .vsd-kin-section .kin-num:focus {
-  outline: 1px dashed rgba(0, 0, 0, 0.35);
+  outline: 1px dashed var(--focus);
   outline-offset: 2px;
+  border-bottom-color: transparent;
+  background: rgba(255, 255, 255, 0.24);
+}
+.vsd-kin-section {
+  /* =========================
+     9) Starting Wealth (compacto)
+     ========================= */
+}
+.vsd-kin-section .kin-inline-block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.vsd-kin-section .kin-inline-input {
+  width: 110px;
+  padding: 4px 6px;
+  font-size: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  background: rgba(0, 0, 0, 0.02);
+}
+.vsd-kin-section .kin-inline-input:hover {
+  background: rgba(0, 0, 0, 0.035);
+}
+.vsd-kin-section .kin-inline-input:focus {
+  outline: 1px dashed var(--focus);
+  outline-offset: 2px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.vsd-kin-section {
+  /* =========================
+     10) Textareas (cuaderno)
+     ========================= */
 }
 .vsd-kin-section .kin-textarea,
 .vsd-kin-section .kin-body {
   width: 100%;
-  border: none;
-  background: transparent;
-  resize: vertical;
-  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: var(--fieldBg);
+  border-radius: 2px;
+  padding: 8px 8px;
+  line-height: 1.38;
+}
+.vsd-kin-section .kin-textarea:hover,
+.vsd-kin-section .kin-body:hover {
+  background: rgba(245, 240, 228, 0.78);
 }
 .vsd-kin-section .kin-textarea:focus,
 .vsd-kin-section .kin-body:focus {
-  outline: 1px dashed rgba(0, 0, 0, 0.35);
+  outline: 1px dashed var(--focus);
   outline-offset: 2px;
+  background: rgba(245, 240, 228, 0.9);
+}
+.vsd-kin-section .kin-textarea {
+  font-size: 13px;
 }
 .vsd-kin-section .kin-body {
   font-size: 14px;
-  line-height: 1.38;
   margin: 0;
 }
-.vsd-kin-section .kin-inline-input {
-  font-size: 13px;
-  border: none;
-  background: transparent;
-  width: 120px;
+.vsd-kin-section {
+  /* =========================
+     11) Ajustes finos para evitar scroll horizontal en Foundry
+     ========================= */
 }
-.vsd-kin-section .kin-inline-input:focus {
-  outline: 1px dashed rgba(0, 0, 0, 0.35);
-  outline-offset: 2px;
+.vsd-kin-section .kin-page,
+.vsd-kin-section .kin-top,
+.vsd-kin-section .kin-table {
+  max-width: 100%;
 }
-.vsd-kin-section .kin-meta {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+.vsd-kin-section {
+  /* Por si algún contenido intenta desbordar */
 }
-.vsd-kin-section .kin-meta .kin-meta-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.vsd-kin-section .kin-meta .kin-meta-row label {
-  width: 90px;
-  font-size: 12px;
-  font-weight: 700;
-}
-.vsd-kin-section .kin-meta .kin-meta-row input[type=text],
-.vsd-kin-section .kin-meta .kin-meta-row select {
-  flex: 1;
-}
-.vsd-kin-section .kin-meta .kin-meta-checks {
-  display: flex;
-  gap: 12px;
-}
-.vsd-kin-section .kin-meta .kin-meta-checks label {
-  width: auto;
-  font-weight: 600;
+.vsd-kin-section .kin-top__left,
+.vsd-kin-section .kin-top__right {
+  min-width: 0;
 }
