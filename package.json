@@ -1,12 +1,15 @@
 {
   "name": "vsd-system",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "CSS compiler for the VsD system",
   "scripts": {
     "watch": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch",
     "clean": "rimraf dist",
     "build": "node tools/build.mjs",
     "zip": "node tools/zip.mjs",
+    "version:patch": "standard-version --release-as patch",
+    "version:minor": "standard-version --release-as minor",
+    "version:major": "standard-version --release-as major",
     "release": "npm run build && npm run zip"
   },
   "browserslist": [
@@ -22,6 +25,7 @@
     "rimraf": "^6.1.2",
     "sa": "^0.2.50",
     "sass": "^1.96.0",
+    "standard-version": "^9.5.0",
     "typescript": "^5.9.3"
   }
 }
