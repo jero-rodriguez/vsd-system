@@ -1,6 +1,6 @@
 {
   "name": "vsd-system",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "CSS compiler for the VsD system",
   "scripts": {
     "watch": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch",
@@ -10,6 +10,9 @@
     "version:patch": "standard-version --release-as patch",
     "version:minor": "standard-version --release-as minor",
     "version:major": "standard-version --release-as major",
+    "publish:patch": "npm run version:patch && git push origin main --follow-tags",
+    "publish:minor": "npm run version:minor && git push origin main --follow-tags",
+    "publish:major": "npm run version:major && git push origin main --follow-tags",
     "release": "npm run build && npm run zip"
   },
   "browserslist": [
