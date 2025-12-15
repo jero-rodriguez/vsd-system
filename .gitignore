@@ -139,3 +139,9 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Temporary files created by build scripts
+*.zip
+release*.zip
+vsd-system-*.zip
+dist/

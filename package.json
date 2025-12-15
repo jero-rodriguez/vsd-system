@@ -7,6 +7,9 @@
     "clean": "rimraf dist",
     "build": "node tools/build.mjs",
     "zip": "node tools/zip.mjs",
+    "version:patch": "standard-version --release-as patch",
+    "version:minor": "standard-version --release-as minor",
+    "version:major": "standard-version --release-as major",
     "release": "npm run build && npm run zip"
   },
   "browserslist": [
@@ -22,6 +25,7 @@
     "rimraf": "^6.1.2",
     "sa": "^0.2.50",
     "sass": "^1.96.0",
+    "standard-version": "^9.5.0",
     "typescript": "^5.9.3"
   }
 }
