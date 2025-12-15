@@ -8,6 +8,15 @@
 /* Contenedor principal */
 .vsd-kin-sheet {
   padding: 8px 10px;
+  color: var(--color-text-dark-primary, #222);
+}
+
+/* “Card” opaca para cortar el fondo del window-content */
+.vsd-kin-sheet .vsd-kin-card {
+  background: var(--color-bg, #f0f0f0);
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  border-radius: 6px;
+  padding: 10px;
 }
 
 /* Header tipo Foundry */
@@ -33,11 +42,12 @@
   border-radius: 4px;
   padding: 8px;
   margin: 10px 0;
+  background: var(--color-bg-form, #ffffff);
 }
 
 .vsd-kin-sheet .vsd-fieldset > legend {
   padding: 0 6px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12px;
 }
 
@@ -66,7 +76,9 @@
 .vsd-kin-sheet .vsd-cell label {
   display: block;
   font-size: 11px;
-  opacity: 0.85;
+  font-weight: 700;
+  color: var(--color-text-dark-primary, #222);
+  opacity: 0.9;
   margin-bottom: 2px;
 }
 
@@ -85,7 +97,7 @@
 
 .vsd-kin-sheet .form-group > label {
   flex: 0 0 170px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12px;
   line-height: 1.2;
 }
@@ -116,7 +128,7 @@
 .vsd-kin-sheet .form-group.stacked > label {
   display: block;
   margin: 0 0 4px 0;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12px;
 }
 
@@ -131,15 +143,16 @@
   min-height: 140px;
 }
 
-/* Inputs: no “reset” agresivo, pero sí consistencia */
+/* Inputs: más contraste (fondo sólido + texto oscuro) */
 .vsd-kin-sheet input[type="text"],
 .vsd-kin-sheet input[type="number"],
 .vsd-kin-sheet select,
 .vsd-kin-sheet textarea {
-  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.25));
   border-radius: 3px;
   padding: 4px 6px;
-  background: var(--color-bg-input, rgba(255, 255, 255, 0.6));
+  background: #ffffff;
+  color: #111;
 }
 
 .vsd-kin-sheet input[type="text"]:focus,
