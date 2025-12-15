@@ -123,6 +123,22 @@ Hooks.once("init", function () {
     label: "VsD Kin Sheet (V2)",
   });
 
+  Handlebars.registerHelper("concat", function (...args) {
+    args.pop();
+    return args.join("");
+  });
+
+  Handlebars.registerHelper("get", function (obj, path) {
+    if (!obj || !path) return "";
+    const parts = String(path).split(".");
+    let current = obj;
+    for (const p of parts) {
+      if (current == null) return "";
+      current = current[p];
+    }
+    return current ?? "";
+  });
+
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
 });

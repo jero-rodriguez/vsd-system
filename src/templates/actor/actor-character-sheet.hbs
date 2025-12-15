@@ -1,108 +1,195 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<div class="vsd-character-sheet">
+  <div class="vsd-character-card">
 
-  {{!-- Sheet Header --}}
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-      use both the "grid" and "grid-Ncol" class where "N" can be any number
-      from 1 to 12 and will create that number of columns.  --}}
-      <div class="resources grid grid-3col">
+    <header class="sheet-header">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" />
+      </h1>
+    </header>
 
-        {{!-- "flex-group-center" is also defined in the _grid.scss file
-        and it will add a small amount of padding, a border, and will
-        center all of its child elements content and text. --}}
-        <div class="resource flex-group-center">
-          <label for="system.health.value" class="resource-label">Health</label>
-          <div class="resource-content flexrow flex-center flex-between">
-          <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
-          <span> / </span>
-          <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number"/>
-          </div>
+    <fieldset class="vsd-fieldset">
+      <legend>Identity</legend>
+
+      <div class="vsd-grid vsd-grid--6">
+        <div class="vsd-cell">
+          <label>Level</label>
+          <input type="number" name="system.identity.level" value="{{system.identity.level}}" min="1" />
+        </div>
+        <div class="vsd-cell">
+          <label>XP</label>
+          <input type="number" name="system.identity.xp" value="{{system.identity.xp}}" min="0" />
         </div>
 
-        <div class="resource flex-group-center">
-          <label for="system.power.value" class="resource-label">Power</label>
-          <div class="resource-content flexrow flex-center flex-between">
-          <input type="text" name="system.power.value" value="{{system.power.value}}" data-dtype="Number"/>
-          <span> / </span>
-          <input type="text" name="system.power.max" value="{{system.power.max}}" data-dtype="Number"/>
-          </div>
+        <div class="vsd-cell">
+          <label>Kin</label>
+          <input type="text" name="system.identity.kin.name" value="{{system.identity.kin.name}}" />
         </div>
-
-        <div class="resource flex-group-center">
-          <label for="system.attributes.level.value" class="resource-label">Level</label>
-          <div class="resource-content flexrow flex-center flex-between">
-          <input type="text" name="system.attributes.level.value" value="{{system.attributes.level.value}}" data-dtype="Number"/>
-          </div>
+        <div class="vsd-cell">
+          <label>Culture</label>
+          <input type="text" name="system.identity.culture.name" value="{{system.identity.culture.name}}" />
         </div>
-
+        <div class="vsd-cell">
+          <label>Vocation</label>
+          <input type="text" name="system.identity.vocation.name" value="{{system.identity.vocation.name}}" />
+        </div>
       </div>
-    </div>
-  </header>
+    </fieldset>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    {{!-- Default tab is specified in actor-sheet.mjs --}}
-    <a class="item" data-tab="features">Features</a>
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="items">Items</a>
-    <a class="item" data-tab="spells">Spells</a>
-    <a class="item" data-tab="effects">Effects</a>
-  </nav>
+    <fieldset class="vsd-fieldset">
+      <legend>Stats</legend>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
+      <div class="vsd-grid vsd-grid--6">
+        <div class="vsd-cell">
+          <label title="Brawn">BRN</label>
+          <input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" />
+          <input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" />
+          <div class="vsd-readonly">Total: {{system.derived.stats.brawn.total}}</div>
+        </div>
 
-    {{!-- Owned Features Tab --}}
-    <div class="tab features" data-group="primary" data-tab="features">
-      <section class="grid grid-3col">
-        <aside class="sidebar">
+        <div class="vsd-cell">
+          <label title="Swiftness">SWI</label>
+          <input type="number" name="system.stats.swiftness.base" value="{{system.stats.swiftness.base}}" step="5" />
+          <input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}" step="5" />
+          <div class="vsd-readonly">Total: {{system.derived.stats.swiftness.total}}</div>
+        </div>
 
-          {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-          use both the "grid" and "grid-Ncol" class where "N" can be any number
-          from 1 to 12 and will create that number of columns.  --}}
-          <div class="abilities flexcol">
-            {{#each system.abilities as |ability key|}}
-            <div class="ability flexrow flex-group-center">
-              <label for="system.abilities.{{key}}.value" class="resource-label rollable flexlarge align-left" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{localize (lookup @root.config.abilities key)}}</label>
-              <input type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-              <span class="ability-mod rollable" data-roll="d20+@abilities.{{key}}.mod" data-label="{{localize (lookup @root.config.abilities key)}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
-            </div>
-            {{/each}}
+        <div class="vsd-cell">
+          <label title="Fortitude">FOR</label>
+          <input type="number" name="system.stats.fortitude.base" value="{{system.stats.fortitude.base}}" step="5" />
+          <input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}" step="5" />
+          <div class="vsd-readonly">Total: {{system.derived.stats.fortitude.total}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Wits">WIT</label>
+          <input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" />
+          <input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" />
+          <div class="vsd-readonly">Total: {{system.derived.stats.wits.total}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Wisdom">WSD</label>
+          <input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" />
+          <input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" />
+          <div class="vsd-readonly">Total: {{system.derived.stats.wisdom.total}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Bearing">BEA</label>
+          <input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" />
+          <input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" />
+          <div class="vsd-readonly">Total: {{system.derived.stats.bearing.total}}</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="vsd-fieldset">
+      <legend>Vitals</legend>
+
+      <div class="vsd-grid vsd-grid--6">
+        <div class="vsd-cell">
+          <label title="Hit Points (Current)">HP</label>
+          <input type="number" name="system.hitPoints.current" value="{{system.hitPoints.current}}" min="0" />
+          <div class="vsd-readonly">Total: {{system.derived.hitPoints.total}}</div>
+          <div class="vsd-readonly">Max: {{system.derived.hitPoints.max}}</div>
+          <div class="vsd-readonly">Cap: {{system.derived.hitPoints.capacity}}</div>
+          <div class="vsd-readonly">Bruise: {{system.derived.hitPoints.bruiseThreshold}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Magic Points (Current)">MP</label>
+          <input type="number" name="system.magicPoints.current" value="{{system.magicPoints.current}}" min="0" />
+          <div class="vsd-readonly">Total: {{system.derived.magicPoints.total}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Total Saving Roll">TSR</label>
+          <div class="vsd-readonly">{{system.derived.saves.tsr}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Will Saving Roll">WSR</label>
+          <div class="vsd-readonly">{{system.derived.saves.wsr}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label title="Movement Rate">Move</label>
+          <div class="vsd-readonly">{{system.derived.movement.rate}}</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="vsd-fieldset">
+      <legend>Skills</legend>
+
+      {{#each system.skills as |category catKey|}}
+      <div class="vsd-skill-category">
+        <h3>{{catKey}}</h3>
+
+        {{#each category.skills as |skill skillKey|}}
+        <div class="vsd-grid vsd-grid--6 vsd-skill-row">
+          <div class="vsd-cell">
+            <label>{{skillKey}}</label>
           </div>
-        </aside>
 
-        {{!-- For the main features list, span the right two columns --}}
-        <section class="main grid-span-2">
-          {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
-          {{> "systems/vsd-system/templates/actor/parts/actor-features.hbs"}}
-        </section>
+          <div class="vsd-cell">
+            <label>Ranks</label>
+            <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.ranks" value="{{skill.ranks}}"
+              min="0" />
+          </div>
 
-      </section>
-    </div>
+          <div class="vsd-cell">
+            <label>Spec</label>
+            <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.spec" value="{{skill.spec}}" />
+          </div>
 
-    {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{!-- Editors must receive enriched text data from getData to properly handle rolls --}}
-      {{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}}
-    </div>
+          <div class="vsd-cell">
+            <label>Rank Bonus</label>
+            <div class="vsd-readonly">{{lookup ../../system.derived.skills skillKey "rankBonus"}}</div>
+          </div>
 
-    {{!-- Owned Items Tab --}}
-    <div class="tab items" data-group="primary" data-tab="items">
-       {{> "systems/vsd-system/templates/actor/parts/actor-items.hbs"}}
-    </div>
+          <div class="vsd-cell">
+            <label>Total</label>
+            <div class="vsd-readonly">{{lookup ../../system.derived.skills skillKey "total"}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/each}}
+    </fieldset>
 
-    {{!-- Owned Spells Tab --}}
-    <div class="tab spells" data-group="primary" data-tab="spells">
-      {{> "systems/vsd-system/templates/actor/parts/actor-spells.hbs"}}
-    </div>
+    <fieldset class="vsd-fieldset">
+      <legend>Spell Lores</legend>
 
-    {{!-- Active Effects Tab --}}
-    <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-      {{> "systems/vsd-system/templates/actor/parts/actor-effects.hbs"}}
-    </div>
+      {{#each system.spellLores as |lore idx|}}
+      <div class="vsd-grid vsd-grid--6 vsd-lore-row">
+        <div class="vsd-cell">
+          <label>Name</label>
+          <input type="text" name="system.spellLores.{{idx}}.name" value="{{lore.name}}" />
+        </div>
 
-  </section>
-</form>
+        <div class="vsd-cell">
+          <label>Ranks</label>
+          <input type="number" name="system.spellLores.{{idx}}.ranks" value="{{lore.ranks}}" min="0" />
+        </div>
+
+        <div class="vsd-cell">
+          <label>Rank Bonus</label>
+          <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".rankBonus")}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Total</label>
+          <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".total")}}</div>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Known Spells</label>
+          <textarea name="system.spellLores.{{idx}}.knownSpells" rows="2">{{lore.knownSpells}}</textarea>
+        </div>
+      </div>
+      {{/each}}
+    </fieldset>
+
+  </div>
+</div>
