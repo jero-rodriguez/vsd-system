@@ -1,10 +1,13 @@
 {
   "name": "vsd-system",
-  "version": "2.0.0",
+  "version": "0.0.3",
   "description": "CSS compiler for the VsD system",
   "scripts": {
-    "build": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --no-source-map",
-    "watch": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch"
+    "watch": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch",
+    "clean": "rimraf dist",
+    "build": "node tools/build.mjs",
+    "zip": "node tools/zip.mjs",
+    "release": "npm run build && npm run zip"
   },
   "browserslist": [
     "last 3 versions"
@@ -14,6 +17,10 @@
   "private": true,
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^13.346.0-beta.20250812191140",
+    "archiver": "^7.0.1",
+    "fs-extra": "^11.3.2",
+    "rimraf": "^6.1.2",
+    "sa": "^0.2.50",
     "sass": "^1.96.0",
     "typescript": "^5.9.3"
   }
