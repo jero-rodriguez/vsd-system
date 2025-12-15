@@ -10,6 +10,9 @@
     "version:patch": "standard-version --release-as patch",
     "version:minor": "standard-version --release-as minor",
     "version:major": "standard-version --release-as major",
+    "publish:patch": "npm run version:patch && git push origin main --follow-tags",
+    "publish:minor": "npm run version:minor && git push origin main --follow-tags",
+    "publish:major": "npm run version:major && git push origin main --follow-tags",
     "release": "npm run build && npm run zip"
   },
   "browserslist": [
