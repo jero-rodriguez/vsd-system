@@ -1,82 +1,191 @@
 # VsD System
 
-![Foundry v11](https://img.shields.io/badge/foundry-v11-green)
+![Foundry VTT v13](https://img.shields.io/badge/Foundry-v13-green)
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)
+![License](https://img.shields.io/github/license/jero-rodriguez/vsd-system)
+![Latest Release](https://img.shields.io/github/v/release/jero-rodriguez/vsd-system)
+![Release Workflow](https://img.shields.io/github/actions/workflow/status/jero-rodriguez/vsd-system/release.yml?label=release)
 
-This system is a vsd-system system that you can use as a starting point for building your own custom systems. It's similar to Simple World-building, but has examples of creating attributes in code rather than dynamically through the UI.
+**VsD System** is an unofficial **Against the Darkmaster** system for **Foundry VTT v13**, built with a modern, maintainable architecture based on **ES modules**, a clean source/build separation, and a fully automated release pipeline.
 
-## Usage
+This repository contains the **actual source code** of the system. It is not a generic generator template.
 
-There are two ways to get started: using the VsD system generator command or manually renaming and updating files.
+## Project Status
 
-Regardless of which method you choose, think carefully about your system's name. Your system's package name when submitted to Foundry must be formatted like `alphanumeric-lowercase`, and it must be unique. Check the Foundry systems package list for conflicts before committing to a name!
+* Foundry VTT: **v13**
+* Language: JavaScript (ESM)
+* Styling: CSS (SCSS present but not currently used)
+* Build tooling: Node.js
+* Releases: GitHub Actions
+* Versioning: Semantic Versioning + Conventional Commits
 
-> **Data Models**
->
-> If you would like to use DataModel classes instead of the older template.json configuration, you'll need to use the `npm run generate` command described below and choose to enable them when asked. DataModels are currently an optional feature, and are only availabe in the generator CLI due to that.
+The system is under **active development**.
 
-### Generator
+## Installation
 
-This system includes a generator CLI in `package.json`. To use it, you must have [node.js](https://nodejs.org) installed, and it's recommended that you install node 20 or later.
+### Automatic installation (recommended)
 
-> **Python Generator**
-> 
-> If you would rather use Python than node, there’s an excellent Python-based generator created by Cussa at https://github.com/Cussa/fvtt-vsd-system-initializator. Give it a shot!
+From Foundry VTT:
 
-Once you have npm installed, you can run the following in your terminal or command prompt:
+1. Go to **Game Systems**
+2. Click **Install System**
+3. Use the manifest URL of the desired release:
 
-```bash
-npm install
-npm run generate
+   ```
+   https://raw.githubusercontent.com/jero-rodriguez/vsd-system/refs/tags/vX.Y.Z/system.json
+   ```
+
+Replace `vX.Y.Z` with the target version (for example `v0.0.4`).
+
+### Manual installation
+
+1. Download the ZIP file from the **Releases** section of this repository.
+2. Extract its contents into:
+
+   ```
+   <FoundryData>/systems/vsd-system
+   ```
+3. Restart Foundry VTT.
+
+## Repository Structure
+
+```
+vsd-system/
+├─ src/                # Source code (authoritative)
+│  ├─ module/          # Runtime JavaScript
+│  ├─ templates/       # Handlebars sheets and templates
+│  ├─ css/             # Final CSS styles
+│  ├─ assets/          # Images and static resources
+│  ├─ lang/            # Localization files
+│  ├─ lib/             # Internal libraries
+│  ├─ packs/           # Compendiums
+│  ├─ system.json      # Source manifest
+│  └─ template.json    # Data template
+├─ tools/              # Build and packaging scripts
+│  ├─ build.mjs
+│  └─ zip.mjs
+├─ dist/               # Build output (never committed)
+├─ .github/workflows/  # GitHub Actions
+├─ package.json
+└─ README.md
 ```
 
-Your terminal should prompt you to name your system. Read the instructions carefully, the letter case and special characters in each question matter for correct system generation.
+Important notes:
 
-Once the generator completes, it will output your system to `build/<your-system-name>`, where `<your-system-name>` is the package name you supplied during the prompt.
+* `dist/` is **staging only**. Its contents are packaged directly into the release ZIP.
+* ZIP files are **never committed** to the repository.
 
-Copy this directory over to your Foundry systems directory and start coding!
+## Local Development
 
-### Manual Replacement
+### Requirements
 
-Before installing this system, you should rename any files that have `vsd-system` in their filename to use whatever machine-safe name your system needs, such as `adnd2e` if you were building a system for 2nd edition Advanced Dungeons & Dragons. In addition, you should search through the files for `vsd-system` and `VsD` and do the same for those, replacing them with appropriate names for your system.
+* Node.js **18+** (Node 20 recommended)
+* npm
 
-The `name` property in your `system.json` file is your system's package name. This need to be formatted `alphanumeric-lowercase`, and it must also match the foldername you use for your system.
+### Install dependencies
 
-### Vue 3 VsD
+```
+npm install
+```
 
-**NOTE: The Vue 3 version is currently outdated and considered an advanced usage of Foundry due to it being a custom renderer. Only try it out if you _really_ like Vue and are feeling dangerous!**
+### Build the system
 
-Alternatively, there's another build of this system that supports using Vue 3 components (ES module build target) for character sheet templates.
+Generates the final Foundry-ready files in `dist/`:
 
-Head over to the [Vue3VsD System](https://gitlab.com/asacolips-projects/foundry-mods/vue3vsd-system) repo if you're interested in using Vue!
+```
+npm run build
+```
 
-### Getting Help
+### Package the system
 
-Check out the [Official Foundry VTT Discord](https://discord.gg/foundryvtt)! The #system-development channel has helpful pins and is a good place to ask questions about any part of the foundry application.
+Creates the installable ZIP (without a `dist/` directory inside):
 
-For more static references, the [Knowledge Base](https://foundryvtt.com/kb/) and [API Documentation](https://foundryvtt.com/api/) provide different levels of detail. For the most detail, you can find the client side code in your foundry installation location. Classes are documented in individual files under `resources/app/client` and `resources/app/common`, and the code is collated into a single file at `resources/app/public/scripts/foundry.js`.
+```
+npm run zip
+```
 
-#### Tutorial
+Or both steps together:
 
-For much more information on how to use this system as a starting point for making your own, see the [full tutorial on the Foundry Wiki](https://foundryvtt.wiki/en/development/guides/SD-tutorial)!
+```
+npm run release
+```
 
-Note: Tutorial may be out of date, so look out for the Foundry compatibility badge at the top of each page.
+## Versioning and Changelog
 
-## Sheet Layout
+This project uses:
 
-This system includes a handful of helper CSS classes to help you lay out your sheets if you're not comfortable diving into CSS fully. Those are:
+* **Semantic Versioning**
+* **Conventional Commits**
+* **standard-version** for automated releases
 
-- `flexcol`: Included by Foundry itself, this lays out the child elements of whatever element you place this on vertically.
-- `flexrow`: Included by Foundry itself, this lays out the child elements of whatever element you place this on horizontally.
-- `flex-center`: When used on something that's using flexrow or flexcol, this will center the items and text.
-- `flex-between`: When used on something that's using flexrow or flexcol, this will attempt to place space between the items. Similar to "justify" in word processors.
-- `flex-group-center`: Add a border, padding, and center all items.
-- `flex-group-left`: Add a border, padding, and left align all items.
-- `flex-group-right`: Add a border, padding, and right align all items.
-- `grid`: When combined with the `grid-Ncol` classes, this will lay out child elements in a grid.
-- `grid-Ncol`: Replace `N` with any number from 1-12, such as `grid-3col`. When combined with `grid`, this will layout child elements in a grid with a number of columns equal to the number specified.
+### Recommended commit types
 
-## Compiling the CSS
+* `feat:` new features
+* `fix:` bug fixes
+* `refactor:` refactoring
+* `chore:` maintenance tasks
+* `docs:` documentation changes
 
-This repo includes both CSS for the theme and SCSS source files. If you're new to CSS, it's probably easier to just work in those files directly and delete the SCSS directory. If you're interested in using a CSS preprocessor to add support for nesting, variables, and more, you can run `npm install` in this directory to install the dependencies for the scss compiler. After that, just run `npm run build` to compile the SCSS and start a process that watches for new changes.
+Example:
 
-![image](http://mattsmith.in/images/vsd-system.png)
+```
+feat: add initial character sheet
+```
+
+### Bumping the version
+
+* Patch release:
+
+```
+npm run version:patch
+```
+
+* Minor release:
+
+```
+npm run version:minor
+```
+
+* Major release:
+
+```
+npm run version:major
+```
+
+This automatically:
+
+* Updates `package.json`
+* Updates `CHANGELOG.md`
+* Creates a release commit
+* Creates a Git tag `vX.Y.Z`
+
+Then push everything:
+
+```
+git push origin main --follow-tags
+```
+
+## Automated Releases (GitHub Actions)
+
+When a tag `vX.Y.Z` is pushed:
+
+1. GitHub Actions runs the build
+2. Generates the installable ZIP
+3. Creates a **GitHub Release**
+4. Uploads the ZIP as a release asset
+
+ZIP files exist **only** as release assets, never in the repository history.
+
+## Compatibility
+
+* Foundry VTT **v13 only**
+* Not compatible with older Foundry versions
+
+## License
+
+See `LICENSE.txt` for details.
+
+## Support and References
+
+* Foundry VTT Discord: [https://discord.gg/foundryvtt](https://discord.gg/foundryvtt)
+* Foundry API Documentation: [https://foundryvtt.com/api/](https://foundryvtt.com/api/)
