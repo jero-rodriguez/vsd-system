@@ -3,8 +3,7 @@ import { VsDCharacter } from "./documents/actor-character.mjs";
 import { VsDNpc } from "./documents/actor-npc.mjs";
 import { VsDItem } from "./documents/item.mjs";
 // Import sheet classes.
-import { VsDActorSheet } from "./sheets/actor-sheet.mjs";
-import { VsDItemSheet } from "./sheets/item-sheet.mjs";
+import { VsDActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
 import { VsDKinSheet } from "./sheets/items/item-kin-sheet.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
@@ -75,29 +74,14 @@ Hooks.once("init", function () {
   // if the transfer property on the Active Effect is true.
   CONFIG.ActiveEffect.legacyTransferral = false;
 
-  // Register sheet application classes
-  foundry.documents.collections.Actors.unregisterSheet(
-    "core",
-    foundry.appv1.sheets.ActorSheet
-  );
-  foundry.documents.collections.Actors.registerSheet(
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(
+    Actor,
     "vsd-system",
-    VsDActorSheet,
+    VsDActorSheetV2,
     {
+      types: ["character", "npc"],
       makeDefault: true,
-      label: "VSD_SYSTEM.SheetLabels.Actor",
-    }
-  );
-  foundry.documents.collections.Items.unregisterSheet(
-    "core",
-    foundry.appv1.sheets.ItemSheet
-  );
-  foundry.documents.collections.Items.registerSheet(
-    "vsd-system",
-    VsDItemSheet,
-    {
-      makeDefault: false,
-      label: "VSD_SYSTEM.SheetLabels.Item (Legacy V1)",
+      label: "VsD Actor Sheet",
     }
   );
 
@@ -117,11 +101,16 @@ Hooks.once("init", function () {
     label: "VSD_SYSTEM.SheetLabels.Item",
   }); */
 
-  foundry.documents.collections.Items.registerSheet("vsd-system", VsDKinSheet, {
-    types: ["kin"],
-    makeDefault: true,
-    label: "VsD Kin Sheet (V2)",
-  });
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(
+    Item,
+    "vsd-system",
+    VsDKinSheet,
+    {
+      types: ["kin"],
+      makeDefault: true,
+      label: "VsD Kin Sheet",
+    }
+  );
 
   Handlebars.registerHelper("concat", function (...args) {
     args.pop();

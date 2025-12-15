@@ -26,7 +26,13 @@
     "verified": "13.351"
   },
   "esmodules": ["module/vsd-system.mjs"],
-  "styles": ["css/vsd-system.css"],
+  "styles": [
+    "css/vsd-system.css",
+    "css/character.css",
+    "css/kin.css",
+    "css/npc.css",
+    "css/item.css"
+  ],
   "languages": [
     {
       "lang": "en",

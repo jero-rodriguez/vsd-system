@@ -1,22 +1,12 @@
-/* vsd-system.css
-   Base compartida para TODAS las hojas del sistema VsD
-   Foundry VTT v13 – Sheets V2
+/* vsd-sheet.css
+   Base compartida para TODAS las hojas (Foundry VTT v13, Sheets V2)
    - Maquetación básica y fiel a Foundry
    - Sin ornamentos
-   - Reutilizable por Character, Kin, NPCs, Items
 */
-
-/* =========================
-   Wrapper base
-   ========================= */
 
 .vsd-sheet {
   padding: 8px 10px;
   color: var(--color-text-dark-primary, #222);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
 }
 
 .vsd-sheet,
@@ -24,25 +14,15 @@
   box-sizing: border-box;
 }
 
-/* =========================
-   Card principal
-   ========================= */
-
+/* Card opaca para cortar el fondo */
 .vsd-sheet .vsd-sheet__card {
   background: var(--color-bg, #f0f0f0);
   border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
   border-radius: 6px;
   padding: 10px;
-  min-width: 0;
-  flex: 1 1 auto;
-  overflow-y: auto;
-  min-height: 0;
 }
 
-/* =========================
-   Header tipo Foundry
-   ========================= */
-
+/* Header tipo Foundry */
 .vsd-sheet .sheet-header {
   margin-bottom: 8px;
 }
@@ -59,10 +39,7 @@
   font-weight: 700;
 }
 
-/* =========================
-   Fieldsets
-   ========================= */
-
+/* Fieldsets y legend */
 .vsd-sheet .vsd-fieldset {
   border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
   border-radius: 4px;
@@ -85,10 +62,7 @@
   margin: 8px 0;
 }
 
-/* =========================
-   Grid genérico
-   ========================= */
-
+/* Grid genérico */
 .vsd-sheet .vsd-grid {
   display: grid;
   gap: 8px;
@@ -113,15 +87,7 @@
   margin-bottom: 2px;
 }
 
-.vsd-sheet .vsd-cell input {
-  width: 100%;
-  text-align: center;
-}
-
-/* =========================
-   Inputs y controles
-   ========================= */
-
+/* Inputs */
 .vsd-sheet input[type="text"],
 .vsd-sheet input[type="number"],
 .vsd-sheet select,
@@ -142,23 +108,23 @@
   outline-offset: 1px;
 }
 
-/* Inputs numéricos en grid */
+.vsd-sheet .vsd-cell input {
+  width: 100%;
+  text-align: center;
+}
+
 .vsd-sheet .vsd-grid input[type="number"] {
   height: 28px;
   line-height: 28px;
   padding: 0 6px;
 }
 
-/* =========================
-   form-group compatible Foundry
-   ========================= */
-
+/* form-group compatible Foundry */
 .vsd-sheet .form-group {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 6px 0;
-  min-width: 0;
 }
 
 .vsd-sheet .form-group > label {
@@ -185,7 +151,6 @@
   max-width: 160px;
 }
 
-/* Variante stacked */
 .vsd-sheet .form-group.stacked {
   display: block;
   margin: 8px 0;
@@ -198,84 +163,14 @@
   font-size: 12px;
 }
 
-/* =========================
-   Textareas
-   ========================= */
-
+/* Textareas */
 .vsd-sheet textarea {
   width: 100%;
   min-height: 80px;
   resize: vertical;
 }
 
-/* =========================
-   Read-only helper
-   ========================= */
-
-.vsd-readonly {
-  font-size: 12px;
-  opacity: 0.9;
-  line-height: 1.4;
-}
-
-/* =========================
-   Tables (reutilizable)
-   ========================= */
-
-.vsd-sheet .vsd-table {
-  width: 100%;
-  max-width: 100%;
-  border-collapse: collapse;
-  margin: 6px 0;
-  table-layout: fixed;
-}
-
-.vsd-sheet .vsd-table th,
-.vsd-sheet .vsd-table td {
-  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
-  padding: 6px;
-  vertical-align: middle;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-}
-
-.vsd-sheet .vsd-table th {
-  font-size: 11px;
-  font-weight: 800;
-  text-align: left;
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.vsd-sheet .vsd-table input[type="number"],
-.vsd-sheet .vsd-table input[type="text"] {
-  width: 100%;
-}
-
-.vsd-sheet .vsd-table .is-num {
-  text-align: right;
-}
-
-.vsd-sheet .vsd-table .is-center {
-  text-align: center;
-}
-
-.vsd-sheet .vsd-table .is-compact {
-  width: 90px;
-}
-
-.vsd-sheet .vsd-table .is-wide {
-  width: 40%;
-}
-
-.vsd-sheet .vsd-table .vsd-readonly {
-  margin: 0;
-}
-
-/* =========================
-   Responsive
-   ========================= */
-
+/* Responsive */
 @media (max-width: 820px) {
   .vsd-sheet .vsd-grid--6 {
     grid-template-columns: repeat(3, minmax(0, 1fr));

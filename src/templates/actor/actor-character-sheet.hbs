@@ -1,5 +1,5 @@
-<div class="vsd-character-sheet">
-  <div class="vsd-character-card">
+<div class="vsd-sheet vsd-sheet--character">
+  <div class="vsd-sheet__card">
 
     <header class="sheet-header">
       <h1 class="charname">
@@ -10,11 +10,12 @@
     <fieldset class="vsd-fieldset">
       <legend>Identity</legend>
 
-      <div class="vsd-grid vsd-grid--6">
+      <div class="vsd-grid vsd-grid--identity">
         <div class="vsd-cell">
           <label>Level</label>
           <input type="number" name="system.identity.level" value="{{system.identity.level}}" min="1" />
         </div>
+
         <div class="vsd-cell">
           <label>XP</label>
           <input type="number" name="system.identity.xp" value="{{system.identity.xp}}" min="0" />
@@ -24,10 +25,12 @@
           <label>Kin</label>
           <input type="text" name="system.identity.kin.name" value="{{system.identity.kin.name}}" />
         </div>
+
         <div class="vsd-cell">
           <label>Culture</label>
           <input type="text" name="system.identity.culture.name" value="{{system.identity.culture.name}}" />
         </div>
+
         <div class="vsd-cell">
           <label>Vocation</label>
           <input type="text" name="system.identity.vocation.name" value="{{system.identity.vocation.name}}" />
@@ -38,47 +41,99 @@
     <fieldset class="vsd-fieldset">
       <legend>Stats</legend>
 
-      <div class="vsd-grid vsd-grid--6">
-        <div class="vsd-cell">
-          <label title="Brawn">BRN</label>
-          <input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" />
-          <input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" />
-          <div class="vsd-readonly">Total: {{system.derived.stats.brawn.total}}</div>
+      <div class="vsd-cards vsd-cards--stats">
+        <div class="vsd-cardStat">
+          <div class="vsd-cardStat__head">
+            <span class="vsd-abbr" title="Brawn">BRN</span>
+            <span class="vsd-pill">{{system.derived.stats.brawn.total}}</span>
+          </div>
+          <div class="vsd-cardStat__body">
+            <label class="vsd-subLabel">Base
+              <input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" />
+            </label>
+            <label class="vsd-subLabel">Spec
+              <input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" />
+            </label>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Swiftness">SWI</label>
-          <input type="number" name="system.stats.swiftness.base" value="{{system.stats.swiftness.base}}" step="5" />
-          <input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}" step="5" />
-          <div class="vsd-readonly">Total: {{system.derived.stats.swiftness.total}}</div>
+        <div class="vsd-cardStat">
+          <div class="vsd-cardStat__head">
+            <span class="vsd-abbr" title="Swiftness">SWI</span>
+            <span class="vsd-pill">{{system.derived.stats.swiftness.total}}</span>
+          </div>
+          <div class="vsd-cardStat__body">
+            <label class="vsd-subLabel">Base
+              <input type="number" name="system.stats.swiftness.base" value="{{system.stats.swiftness.base}}"
+                step="5" />
+            </label>
+            <label class="vsd-subLabel">Spec
+              <input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}"
+                step="5" />
+            </label>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Fortitude">FOR</label>
-          <input type="number" name="system.stats.fortitude.base" value="{{system.stats.fortitude.base}}" step="5" />
-          <input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}" step="5" />
-          <div class="vsd-readonly">Total: {{system.derived.stats.fortitude.total}}</div>
+        <div class="vsd-cardStat">
+          <div class="vsd-cardStat__head">
+            <span class="vsd-abbr" title="Fortitude">FOR</span>
+            <span class="vsd-pill">{{system.derived.stats.fortitude.total}}</span>
+          </div>
+          <div class="vsd-cardStat__body">
+            <label class="vsd-subLabel">Base
+              <input type="number" name="system.stats.fortitude.base" value="{{system.stats.fortitude.base}}"
+                step="5" />
+            </label>
+            <label class="vsd-subLabel">Spec
+              <input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}"
+                step="5" />
+            </label>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Wits">WIT</label>
-          <input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" />
-          <input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" />
-          <div class="vsd-readonly">Total: {{system.derived.stats.wits.total}}</div>
+        <div class="vsd-cardStat">
+          <div class="vsd-cardStat__head">
+            <span class="vsd-abbr" title="Wits">WIT</span>
+            <span class="vsd-pill">{{system.derived.stats.wits.total}}</span>
+          </div>
+          <div class="vsd-cardStat__body">
+            <label class="vsd-subLabel">Base
+              <input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" />
+            </label>
+            <label class="vsd-subLabel">Spec
+              <input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" />
+            </label>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Wisdom">WSD</label>
-          <input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" />
-          <input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" />
-          <div class="vsd-readonly">Total: {{system.derived.stats.wisdom.total}}</div>
+        <div class="vsd-cardStat">
+          <div class="vsd-cardStat__head">
+            <span class="vsd-abbr" title="Wisdom">WSD</span>
+            <span class="vsd-pill">{{system.derived.stats.wisdom.total}}</span>
+          </div>
+          <div class="vsd-cardStat__body">
+            <label class="vsd-subLabel">Base
+              <input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" />
+            </label>
+            <label class="vsd-subLabel">Spec
+              <input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" />
+            </label>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Bearing">BEA</label>
-          <input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" />
-          <input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" />
-          <div class="vsd-readonly">Total: {{system.derived.stats.bearing.total}}</div>
+        <div class="vsd-cardStat">
+          <div class="vsd-cardStat__head">
+            <span class="vsd-abbr" title="Bearing">BEA</span>
+            <span class="vsd-pill">{{system.derived.stats.bearing.total}}</span>
+          </div>
+          <div class="vsd-cardStat__body">
+            <label class="vsd-subLabel">Base
+              <input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" />
+            </label>
+            <label class="vsd-subLabel">Spec
+              <input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" />
+            </label>
+          </div>
         </div>
       </div>
     </fieldset>
@@ -86,35 +141,51 @@
     <fieldset class="vsd-fieldset">
       <legend>Vitals</legend>
 
-      <div class="vsd-grid vsd-grid--6">
-        <div class="vsd-cell">
-          <label title="Hit Points (Current)">HP</label>
-          <input type="number" name="system.hitPoints.current" value="{{system.hitPoints.current}}" min="0" />
-          <div class="vsd-readonly">Total: {{system.derived.hitPoints.total}}</div>
-          <div class="vsd-readonly">Max: {{system.derived.hitPoints.max}}</div>
-          <div class="vsd-readonly">Cap: {{system.derived.hitPoints.capacity}}</div>
-          <div class="vsd-readonly">Bruise: {{system.derived.hitPoints.bruiseThreshold}}</div>
+      <div class="vsd-cards vsd-cards--vitals">
+        <div class="vsd-cardVital">
+          <div class="vsd-cardVital__head">
+            <span class="vsd-abbr" title="Hit Points (Current)">HP</span>
+            <input class="vsd-compactInput" type="number" name="system.hitPoints.current"
+              value="{{system.hitPoints.current}}" min="0" />
+          </div>
+          <div class="vsd-cardVital__meta">
+            <div>Total <span class="vsd-pill">{{system.derived.hitPoints.total}}</span></div>
+            <div>Max <span class="vsd-pill">{{system.derived.hitPoints.max}}</span></div>
+            <div>Cap <span class="vsd-pill">{{system.derived.hitPoints.capacity}}</span></div>
+            <div>Bruise <span class="vsd-pill">{{system.derived.hitPoints.bruiseThreshold}}</span></div>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Magic Points (Current)">MP</label>
-          <input type="number" name="system.magicPoints.current" value="{{system.magicPoints.current}}" min="0" />
-          <div class="vsd-readonly">Total: {{system.derived.magicPoints.total}}</div>
+        <div class="vsd-cardVital">
+          <div class="vsd-cardVital__head">
+            <span class="vsd-abbr" title="Magic Points (Current)">MP</span>
+            <input class="vsd-compactInput" type="number" name="system.magicPoints.current"
+              value="{{system.magicPoints.current}}" min="0" />
+          </div>
+          <div class="vsd-cardVital__meta">
+            <div>Total <span class="vsd-pill">{{system.derived.magicPoints.total}}</span></div>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Total Saving Roll">TSR</label>
-          <div class="vsd-readonly">{{system.derived.saves.tsr}}</div>
+        <div class="vsd-cardVital">
+          <div class="vsd-cardVital__head">
+            <span class="vsd-abbr" title="Total Saving Roll">TSR</span>
+            <span class="vsd-pill">{{system.derived.saves.tsr}}</span>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Will Saving Roll">WSR</label>
-          <div class="vsd-readonly">{{system.derived.saves.wsr}}</div>
+        <div class="vsd-cardVital">
+          <div class="vsd-cardVital__head">
+            <span class="vsd-abbr" title="Will Saving Roll">WSR</span>
+            <span class="vsd-pill">{{system.derived.saves.wsr}}</span>
+          </div>
         </div>
 
-        <div class="vsd-cell">
-          <label title="Movement Rate">Move</label>
-          <div class="vsd-readonly">{{system.derived.movement.rate}}</div>
+        <div class="vsd-cardVital">
+          <div class="vsd-cardVital__head">
+            <span class="vsd-abbr" title="Movement Rate">Move</span>
+            <span class="vsd-pill">{{system.derived.movement.rate}}</span>
+          </div>
         </div>
       </div>
     </fieldset>
@@ -126,34 +197,41 @@
       <div class="vsd-skill-category">
         <h3>{{catKey}}</h3>
 
-        {{#each category.skills as |skill skillKey|}}
-        <div class="vsd-grid vsd-grid--6 vsd-skill-row">
-          <div class="vsd-cell">
-            <label>{{skillKey}}</label>
-          </div>
+        <table class="vsd-table">
+          <thead>
+            <tr>
+              <th class="is-wide">Skill</th>
+              <th class="is-compact is-center">Ranks</th>
+              <th class="is-compact is-center">Spec</th>
+              <th class="is-compact is-center">Rank Bonus</th>
+              <th class="is-compact is-center">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each category.skills as |skill skillKey|}}
+            <tr>
+              <td title="{{skillKey}}">{{skillKey}}</td>
 
-          <div class="vsd-cell">
-            <label>Ranks</label>
-            <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.ranks" value="{{skill.ranks}}"
-              min="0" />
-          </div>
+              <td class="is-compact">
+                <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.ranks" value="{{skill.ranks}}"
+                  min="0" />
+              </td>
 
-          <div class="vsd-cell">
-            <label>Spec</label>
-            <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.spec" value="{{skill.spec}}" />
-          </div>
+              <td class="is-compact">
+                <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.spec" value="{{skill.spec}}" />
+              </td>
 
-          <div class="vsd-cell">
-            <label>Rank Bonus</label>
-            <div class="vsd-readonly">{{lookup ../../system.derived.skills skillKey "rankBonus"}}</div>
-          </div>
+              <td class="is-compact is-center">
+                <div class="vsd-readonly">{{get ../../system (concat "derived.skills." skillKey ".rankBonus")}}</div>
+              </td>
 
-          <div class="vsd-cell">
-            <label>Total</label>
-            <div class="vsd-readonly">{{lookup ../../system.derived.skills skillKey "total"}}</div>
-          </div>
-        </div>
-        {{/each}}
+              <td class="is-compact is-center">
+                <div class="vsd-readonly">{{get ../../system (concat "derived.skills." skillKey ".total")}}</div>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
       {{/each}}
     </fieldset>
@@ -161,34 +239,46 @@
     <fieldset class="vsd-fieldset">
       <legend>Spell Lores</legend>
 
-      {{#each system.spellLores as |lore idx|}}
-      <div class="vsd-grid vsd-grid--6 vsd-lore-row">
-        <div class="vsd-cell">
-          <label>Name</label>
-          <input type="text" name="system.spellLores.{{idx}}.name" value="{{lore.name}}" />
-        </div>
+      <table class="vsd-table">
+        <thead>
+          <tr>
+            <th class="is-wide">Name</th>
+            <th class="is-compact is-center">Ranks</th>
+            <th class="is-compact is-center">Rank Bonus</th>
+            <th class="is-compact is-center">Total</th>
+            <th>Known Spells</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each system.spellLores as |lore idx|}}
+          <tr>
+            <td>
+              <input type="text" name="system.spellLores.{{idx}}.name" value="{{lore.name}}" />
+            </td>
 
-        <div class="vsd-cell">
-          <label>Ranks</label>
-          <input type="number" name="system.spellLores.{{idx}}.ranks" value="{{lore.ranks}}" min="0" />
-        </div>
+            <td class="is-compact">
+              <input type="number" name="system.spellLores.{{idx}}.ranks" value="{{lore.ranks}}" min="0" />
+            </td>
 
-        <div class="vsd-cell">
-          <label>Rank Bonus</label>
-          <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".rankBonus")}}</div>
-        </div>
+            <td class="is-compact is-center">
+              <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".rankBonus")}}</div>
+            </td>
 
-        <div class="vsd-cell">
-          <label>Total</label>
-          <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".total")}}</div>
-        </div>
+            <td class="is-compact is-center">
+              <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".total")}}</div>
+            </td>
 
-        <div class="vsd-cell">
-          <label>Known Spells</label>
-          <textarea name="system.spellLores.{{idx}}.knownSpells" rows="2">{{lore.knownSpells}}</textarea>
-        </div>
-      </div>
-      {{/each}}
+            <td>
+              <div class="vsd-knownSpells">
+                {{#each lore.knownSpells as |s|}}
+                <div>{{s}}</div>
+                {{/each}}
+              </div>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </fieldset>
 
   </div>
