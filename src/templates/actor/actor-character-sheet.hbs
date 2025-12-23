@@ -10,17 +10,7 @@
     <fieldset class="vsd-fieldset">
       <legend>Identity</legend>
 
-      <div class="vsd-grid vsd-grid--identity">
-        <div class="vsd-cell">
-          <label>Level</label>
-          <input type="number" name="system.identity.level" value="{{system.identity.level}}" min="1" />
-        </div>
-
-        <div class="vsd-cell">
-          <label>XP</label>
-          <input type="number" name="system.identity.xp" value="{{system.identity.xp}}" min="0" />
-        </div>
-
+      <div class="vsd-grid vsd-grid--identity-official">
         <div class="vsd-cell">
           <label>Kin</label>
           <input type="text" name="system.identity.kin.name" value="{{system.identity.kin.name}}" />
@@ -35,107 +25,128 @@
           <label>Vocation</label>
           <input type="text" name="system.identity.vocation.name" value="{{system.identity.vocation.name}}" />
         </div>
+
+        <div class="vsd-cell">
+          <label>XP</label>
+          <input type="number" name="system.identity.xp" value="{{system.identity.xp}}" min="0" />
+        </div>
+
+        <div class="vsd-cell">
+          <label>Level</label>
+          <input type="number" name="system.identity.level" value="{{system.identity.level}}" min="1" />
+        </div>
+      </div>
+
+      <div class="vsd-grid vsd-grid--identity-notes">
+        <div class="vsd-cell">
+          <label>Motivation</label>
+          <input type="text" name="system.identity.motivation" value="{{system.identity.motivation}}" />
+        </div>
+        <div class="vsd-cell">
+          <label>Nature</label>
+          <input type="text" name="system.identity.nature" value="{{system.identity.nature}}" />
+        </div>
+        <div class="vsd-cell">
+          <label>Allegiance</label>
+          <input type="text" name="system.identity.allegiance" value="{{system.identity.allegiance}}" />
+        </div>
       </div>
     </fieldset>
 
     <fieldset class="vsd-fieldset">
       <legend>Stats</legend>
 
-      <div class="vsd-cards vsd-cards--stats">
-        <div class="vsd-cardStat">
-          <div class="vsd-cardStat__head">
-            <span class="vsd-abbr" title="Brawn">BRN</span>
-            <span class="vsd-pill">{{system.derived.stats.brawn.total}}</span>
-          </div>
-          <div class="vsd-cardStat__body">
-            <label class="vsd-subLabel">Base
-              <input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" />
-            </label>
-            <label class="vsd-subLabel">Spec
-              <input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" />
-            </label>
-          </div>
-        </div>
+      <table class="vsd-table vsd-table--stats">
+        <thead>
+          <tr>
+            <th>Stat</th>
+            <th class="is-compact is-center">Abbr</th>
+            <th class="is-compact is-center">Base</th>
+            <th class="is-compact is-center">Kin</th>
+            <th class="is-compact is-center">Spec</th>
+            <th class="is-compact is-center">Tot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Brawn</td>
+            <td class="is-center">BRN</td>
+            <td><input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" /></td>
+            <td>
+              <div class="vsd-readonly">{{system.derived.stats.brawn.kin}}</div>
+            </td>
+            <td><input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" /></td>
+            <td class="is-center"><span class="vsd-pill">{{system.derived.stats.brawn.total}}</span></td>
+          </tr>
 
-        <div class="vsd-cardStat">
-          <div class="vsd-cardStat__head">
-            <span class="vsd-abbr" title="Swiftness">SWI</span>
-            <span class="vsd-pill">{{system.derived.stats.swiftness.total}}</span>
-          </div>
-          <div class="vsd-cardStat__body">
-            <label class="vsd-subLabel">Base
-              <input type="number" name="system.stats.swiftness.base" value="{{system.stats.swiftness.base}}"
+          <tr>
+            <td>Swiftness</td>
+            <td class="is-center">SWI</td>
+            <td><input type="number" name="system.stats.swiftness.base" value="{{system.stats.swiftness.base}}"
                 step="5" />
-            </label>
-            <label class="vsd-subLabel">Spec
-              <input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}"
+            </td>
+            <td>
+              <div class="vsd-readonly">{{system.derived.stats.swiftness.kin}}</div>
+            </td>
+            <td><input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}"
                 step="5" />
-            </label>
-          </div>
-        </div>
+            </td>
+            <td class="is-center"><span class="vsd-pill">{{system.derived.stats.swiftness.total}}</span></td>
+          </tr>
 
-        <div class="vsd-cardStat">
-          <div class="vsd-cardStat__head">
-            <span class="vsd-abbr" title="Fortitude">FOR</span>
-            <span class="vsd-pill">{{system.derived.stats.fortitude.total}}</span>
-          </div>
-          <div class="vsd-cardStat__body">
-            <label class="vsd-subLabel">Base
-              <input type="number" name="system.stats.fortitude.base" value="{{system.stats.fortitude.base}}"
+          <tr>
+            <td>Fortitude</td>
+            <td class="is-center">FOR</td>
+            <td><input type="number" name="system.stats.fortitude.base" value="{{system.stats.fortitude.base}}"
                 step="5" />
-            </label>
-            <label class="vsd-subLabel">Spec
-              <input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}"
+            </td>
+            <td>
+              <div class="vsd-readonly">{{system.derived.stats.fortitude.kin}}</div>
+            </td>
+            <td><input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}"
                 step="5" />
-            </label>
-          </div>
-        </div>
+            </td>
+            <td class="is-center"><span class="vsd-pill">{{system.derived.stats.fortitude.total}}</span></td>
+          </tr>
 
-        <div class="vsd-cardStat">
-          <div class="vsd-cardStat__head">
-            <span class="vsd-abbr" title="Wits">WIT</span>
-            <span class="vsd-pill">{{system.derived.stats.wits.total}}</span>
-          </div>
-          <div class="vsd-cardStat__body">
-            <label class="vsd-subLabel">Base
-              <input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" />
-            </label>
-            <label class="vsd-subLabel">Spec
-              <input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" />
-            </label>
-          </div>
-        </div>
+          <tr>
+            <td>Wits</td>
+            <td class="is-center">WIT</td>
+            <td><input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" /></td>
+            <td>
+              <div class="vsd-readonly">{{system.derived.stats.wits.kin}}</div>
+            </td>
+            <td><input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" /></td>
+            <td class="is-center"><span class="vsd-pill">{{system.derived.stats.wits.total}}</span></td>
+          </tr>
 
-        <div class="vsd-cardStat">
-          <div class="vsd-cardStat__head">
-            <span class="vsd-abbr" title="Wisdom">WSD</span>
-            <span class="vsd-pill">{{system.derived.stats.wisdom.total}}</span>
-          </div>
-          <div class="vsd-cardStat__body">
-            <label class="vsd-subLabel">Base
-              <input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" />
-            </label>
-            <label class="vsd-subLabel">Spec
-              <input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" />
-            </label>
-          </div>
-        </div>
+          <tr>
+            <td>Wisdom</td>
+            <td class="is-center">WSD</td>
+            <td><input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" />
+            </td>
+            <td>
+              <div class="vsd-readonly">{{system.derived.stats.wisdom.kin}}</div>
+            </td>
+            <td><input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" />
+            </td>
+            <td class="is-center"><span class="vsd-pill">{{system.derived.stats.wisdom.total}}</span></td>
+          </tr>
 
-        <div class="vsd-cardStat">
-          <div class="vsd-cardStat__head">
-            <span class="vsd-abbr" title="Bearing">BEA</span>
-            <span class="vsd-pill">{{system.derived.stats.bearing.total}}</span>
-          </div>
-          <div class="vsd-cardStat__body">
-            <label class="vsd-subLabel">Base
-              <input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" />
-            </label>
-            <label class="vsd-subLabel">Spec
-              <input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" />
-            </label>
-          </div>
-        </div>
-      </div>
+          <tr>
+            <td>Bearing</td>
+            <td class="is-center">BEA</td>
+            <td><input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" />
+            </td>
+            <td>
+              <div class="vsd-readonly">{{system.derived.stats.bearing.kin}}</div>
+            </td>
+            <td><input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" />
+            </td>
+            <td class="is-center"><span class="vsd-pill">{{system.derived.stats.bearing.total}}</span></td>
+          </tr>
+        </tbody>
+      </table>
     </fieldset>
 
     <fieldset class="vsd-fieldset">

@@ -126,3 +126,18 @@
   font-size: 12px;
   line-height: 1.2;
 }
+
+.vsd-sheet--character .vsd-grid--identity-official {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 120px));
+}
+
+.vsd-sheet--character .vsd-grid--identity-notes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 820px) {
+  .vsd-sheet--character .vsd-grid--identity-official,
+  .vsd-sheet--character .vsd-grid--identity-notes {
+    grid-template-columns: 1fr;
+  }
+}

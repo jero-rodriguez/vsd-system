@@ -181,7 +181,7 @@ export class VsDCharacter extends Actor {
     // 1) Stats kin bucket
     if (system.stats) {
       for (const [key, stat] of Object.entries(system.stats)) {
-        const kinValue = kinStats[key];
+        const kinValue = kinStats[stat.code];
         if (typeof kinValue === "number") stat.kin = kinValue;
       }
     }
