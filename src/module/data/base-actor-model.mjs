@@ -7,25 +7,32 @@ export default class VsDActorBaseModel extends VsDDataModel {
     const schema = {};
 
     schema.hitPoints = new fields.SchemaField({
-      total: new fields.NumberField({
-        ...requiredInteger,
-        initial: 0,
-        min: 0,
-      }),
       current: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
         min: 0,
       }),
+
       maxHitPoints: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
         min: 0,
       }),
-      bruiseThreshold: new fields.NumberField({
+
+      backgroundBonus: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
         min: 0,
+      }),
+
+      itemBonus: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+
+      specBonus: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
       }),
     });
 
@@ -65,11 +72,32 @@ export default class VsDActorBaseModel extends VsDDataModel {
     });
 
     schema.saves = new fields.SchemaField({
-      toughness: new fields.NumberField({
+      // Buckets aportados por Kin
+      kinTsr: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
       }),
-      willpower: new fields.NumberField({
+      kinWsr: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+
+      // Buckets aportados por Special Bonus (si existe)
+      specTsr: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+      specWsr: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+
+      // Preparado para futuro (equipo, efectos, etc.)
+      itemTsr: new fields.NumberField({
+        ...requiredInteger,
+        initial: 0,
+      }),
+      itemWsr: new fields.NumberField({
         ...requiredInteger,
         initial: 0,
       }),
@@ -85,10 +113,12 @@ export default class VsDActorBaseModel extends VsDDataModel {
 
   static validateJoint(data) {
     super.validateJoint(data);
+
     const hp = data.hitPoints;
     if (!hp) return;
-    if (hp.current < 0 || hp.current > hp.max) {
-      throw new Error("Hit Points current must be between 0 and max.");
+
+    if (hp.current < 0) {
+      throw new Error("Hit Points current must be >= 0.");
     }
   }
 }

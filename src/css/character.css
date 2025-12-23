@@ -1,0 +1,143 @@
+/* character.css (solo específico de Character) */
+.vsd-sheet--character .vsd-sheet__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Cards Stats/Vitals */
+.vsd-sheet--character .vsd-cards {
+  display: grid;
+  gap: 8px;
+  margin: 6px 0;
+  min-width: 0;
+}
+
+.vsd-sheet--character .vsd-cards--stats,
+.vsd-sheet--character .vsd-cards--vitals {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .vsd-sheet--character .vsd-cards--stats,
+  .vsd-sheet--character .vsd-cards--vitals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .vsd-sheet--character .vsd-cards--stats,
+  .vsd-sheet--character .vsd-cards--vitals {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vsd-sheet--character .vsd-cardStat,
+.vsd-sheet--character .vsd-cardVital {
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  border-radius: 6px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  min-width: 0;
+}
+
+.vsd-sheet--character .vsd-cardStat__head,
+.vsd-sheet--character .vsd-cardVital__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  min-width: 0;
+}
+
+.vsd-sheet--character .vsd-abbr {
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.vsd-sheet--character .vsd-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.vsd-sheet--character .vsd-cardStat__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.vsd-sheet--character .vsd-subLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.vsd-sheet--character .vsd-compactInput {
+  width: 90px;
+  text-align: right;
+}
+
+.vsd-sheet--character .vsd-cardVital__meta {
+  display: grid;
+  gap: 4px;
+  opacity: 0.95;
+}
+
+.vsd-sheet--character .vsd-cardVital__meta > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Categorías de skills: compactas */
+.vsd-sheet--character .vsd-skill-category > h3 {
+  margin: 8px 0 4px 0;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Identity: 2 cols pequeñas + 3 cols grandes (mejor uso del ancho) */
+.vsd-sheet--character .vsd-grid--identity {
+  grid-template-columns: repeat(2, minmax(0, 120px)) repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 820px) {
+  .vsd-sheet--character .vsd-grid--identity {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Known Spells: lista compacta dentro de la celda */
+.vsd-sheet--character .vsd-knownSpells {
+  display: grid;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.vsd-sheet--character .vsd-grid--identity-official {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 120px));
+}
+
+.vsd-sheet--character .vsd-grid--identity-notes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 820px) {
+  .vsd-sheet--character .vsd-grid--identity-official,
+  .vsd-sheet--character .vsd-grid--identity-notes {
+    grid-template-columns: 1fr;
+  }
+}

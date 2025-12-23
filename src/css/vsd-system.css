@@ -1,34 +1,62 @@
-/* kin.css
-   Kin sheet (Foundry VTT v13, Sheets V2) - maquetación básica y fiel a Foundry
-   - Sin ornamentos
-   - Reutiliza variables nativas de Foundry (cuando existan)
-   - No toca la window header (iconos de cerrar, etc.)
+/* vsd-system.css
+   Base compartida para hojas VsD (Foundry VTT v13, Sheets V2)
+   - Componentes: layout, fieldset, grid, form-group, table
+   - Soporte tema oscuro: body.theme-dark
 */
 
-/* Contenedor principal */
-.vsd-kin-sheet {
-  padding: 8px 10px;
-  color: var(--color-text-dark-primary, #222);
+/* =========================
+   0) Base y layout (scroll)
+   ========================= */
+
+.vsd-sheet,
+.vsd-sheet * {
+  box-sizing: border-box;
 }
 
-/* “Card” opaca para cortar el fondo del window-content */
-.vsd-kin-sheet .vsd-kin-card {
+.vsd-sheet {
+  padding: 8px 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  color: inherit;
+}
+
+/* Card principal: zona scrolleable */
+.vsd-sheet .vsd-sheet__card {
   background: var(--color-bg, #f0f0f0);
   border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
   border-radius: 6px;
   padding: 10px;
+  min-width: 0;
+
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
 }
 
-/* Header tipo Foundry */
-.vsd-kin-sheet .sheet-header {
+/* Color global por tema */
+body.theme-dark .vsd-sheet {
+  color: var(--color-text-light-primary, #f0f0f0);
+}
+
+body:not(.theme-dark) .vsd-sheet {
+  color: var(--color-text-dark-primary, #222);
+}
+
+/* =========================
+   1) Header tipo Foundry
+   ========================= */
+
+.vsd-sheet .sheet-header {
   margin-bottom: 8px;
 }
 
-.vsd-kin-sheet .sheet-header .charname {
+.vsd-sheet .sheet-header .charname {
   margin: 0;
 }
 
-.vsd-kin-sheet .sheet-header .charname input {
+.vsd-sheet .sheet-header .charname input {
   width: 100%;
   height: 32px;
   line-height: 32px;
@@ -36,73 +64,133 @@
   font-weight: 700;
 }
 
-/* Fieldsets y legend (bloques) */
-.vsd-kin-sheet .vsd-fieldset {
+/* =========================
+   2) Fieldsets
+   ========================= */
+
+.vsd-sheet .vsd-fieldset {
   border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
   border-radius: 4px;
   padding: 8px;
   margin: 10px 0;
   background: var(--color-bg-form, #ffffff);
+  min-width: 0;
 }
 
-.vsd-kin-sheet .vsd-fieldset > legend {
+.vsd-sheet .vsd-fieldset > legend {
   padding: 0 6px;
   font-weight: 700;
   font-size: 12px;
 }
 
-/* Separador simple */
-.vsd-kin-sheet .vsd-sep {
+.vsd-sheet .vsd-sep {
   border: none;
   border-top: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
   margin: 8px 0;
 }
 
-/* Grid de celdas numéricas */
-.vsd-kin-sheet .vsd-grid {
-  display: grid;
-  gap: 8px;
-  margin: 6px 0;
+/* Ajustes de fondo en tema oscuro */
+body.theme-dark .vsd-sheet .vsd-sheet__card {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
-.vsd-kin-sheet .vsd-grid--6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+body.theme-dark .vsd-sheet .vsd-fieldset {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
-.vsd-kin-sheet .vsd-cell {
+/* =========================
+   3) Inputs y controles
+   ========================= */
+
+.vsd-sheet input[type="text"],
+.vsd-sheet input[type="number"],
+.vsd-sheet select,
+.vsd-sheet textarea {
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.25));
+  border-radius: 3px;
+  padding: 4px 6px;
+  background: #ffffff;
+  color: #111;
   min-width: 0;
 }
 
-.vsd-kin-sheet .vsd-cell label {
+body.theme-dark .vsd-sheet input[type="text"],
+body.theme-dark .vsd-sheet input[type="number"],
+body.theme-dark .vsd-sheet select,
+body.theme-dark .vsd-sheet textarea {
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vsd-sheet input[type="text"]:focus,
+.vsd-sheet input[type="number"]:focus,
+.vsd-sheet select:focus,
+.vsd-sheet textarea:focus {
+  outline: 2px solid var(--color-border-highlight, rgba(0, 0, 0, 0.35));
+  outline-offset: 1px;
+}
+
+/* =========================
+   4) Grid
+   ========================= */
+
+.vsd-sheet .vsd-grid {
+  display: grid;
+  gap: 8px;
+  margin: 6px 0;
+  min-width: 0;
+}
+
+.vsd-sheet .vsd-grid--6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.vsd-sheet .vsd-cell {
+  min-width: 0;
+}
+
+.vsd-sheet .vsd-cell label {
   display: block;
   font-size: 11px;
   font-weight: 700;
-  color: var(--color-text-dark-primary, #222);
   opacity: 0.9;
   margin-bottom: 2px;
 }
 
-.vsd-kin-sheet .vsd-cell input {
+.vsd-sheet .vsd-cell input {
   width: 100%;
+}
+
+.vsd-sheet .vsd-grid input[type="number"] {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 6px;
   text-align: center;
 }
 
-/* Estilo de form-group compatible con Foundry */
-.vsd-kin-sheet .form-group {
+/* =========================
+   5) form-group (Foundry-like)
+   ========================= */
+
+.vsd-sheet .form-group {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 6px 0;
+  min-width: 0;
 }
 
-.vsd-kin-sheet .form-group > label {
+.vsd-sheet .form-group > label {
   flex: 0 0 170px;
   font-weight: 700;
   font-size: 12px;
   line-height: 1.2;
 }
 
-.vsd-kin-sheet .form-group .form-fields {
+.vsd-sheet .form-group .form-fields {
   flex: 1 1 auto;
   display: flex;
   gap: 8px;
@@ -110,88 +198,148 @@
   min-width: 0;
 }
 
-.vsd-kin-sheet .form-group .form-fields input,
-.vsd-kin-sheet .form-group .form-fields select {
+.vsd-sheet .form-group .form-fields input,
+.vsd-sheet .form-group .form-fields select {
   width: 100%;
 }
 
-.vsd-kin-sheet .form-group .form-fields input[type="number"] {
+.vsd-sheet .form-group .form-fields input[type="number"] {
   max-width: 160px;
 }
 
-/* Variante stacked (label arriba, campo abajo) */
-.vsd-kin-sheet .form-group.stacked {
+/* Variante stacked */
+.vsd-sheet .form-group.stacked {
   display: block;
   margin: 8px 0;
 }
 
-.vsd-kin-sheet .form-group.stacked > label {
+.vsd-sheet .form-group.stacked > label {
   display: block;
   margin: 0 0 4px 0;
   font-weight: 700;
   font-size: 12px;
 }
 
-/* Textareas */
-.vsd-kin-sheet textarea {
+.vsd-sheet textarea {
   width: 100%;
   min-height: 80px;
   resize: vertical;
 }
 
-.vsd-kin-sheet textarea[name="system.description"] {
-  min-height: 140px;
+/* =========================
+   6) Readonly
+   ========================= */
+
+.vsd-readonly {
+  font-size: 12px;
+  opacity: 0.9;
+  line-height: 1.4;
 }
 
-/* Inputs: más contraste (fondo sólido + texto oscuro) */
-.vsd-kin-sheet input[type="text"],
-.vsd-kin-sheet input[type="number"],
-.vsd-kin-sheet select,
-.vsd-kin-sheet textarea {
-  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.25));
-  border-radius: 3px;
-  padding: 4px 6px;
-  background: #ffffff;
-  color: #111;
+/* =========================
+   7) Tables (consolidado)
+   ========================= */
+
+.vsd-sheet .vsd-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 6px 0;
+  max-width: 100%;
 }
 
-.vsd-kin-sheet input[type="text"]:focus,
-.vsd-kin-sheet input[type="number"]:focus,
-.vsd-kin-sheet select:focus,
-.vsd-kin-sheet textarea:focus {
-  outline: 2px solid var(--color-border-highlight, rgba(0, 0, 0, 0.35));
-  outline-offset: 1px;
+.vsd-sheet .vsd-table th,
+.vsd-sheet .vsd-table td {
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.18));
+  padding: 6px;
+  vertical-align: middle;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 1.25;
 }
 
-/* Ajustes para que los números en grid queden compactos */
-.vsd-kin-sheet .vsd-grid input[type="number"] {
-  height: 28px;
-  line-height: 28px;
-  padding: 0 6px;
+.vsd-sheet .vsd-table th {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-align: left;
+  background: transparent;
 }
 
-/* Responsive: en pantallas estrechas, 6 columnas -> 3 */
+.vsd-sheet .vsd-table input[type="number"],
+.vsd-sheet .vsd-table input[type="text"] {
+  width: 100%;
+}
+
+/* Helpers de columnas */
+.vsd-sheet .vsd-table .is-num {
+  text-align: right;
+}
+.vsd-sheet .vsd-table .is-center {
+  text-align: center;
+}
+.vsd-sheet .vsd-table .is-compact {
+  width: 90px;
+}
+.vsd-sheet .vsd-table .is-wide {
+  width: 40%;
+}
+
+/* Tema claro (cualquier body que NO sea theme-dark) */
+body:not(.theme-dark) .vsd-sheet .vsd-table thead th {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-text-dark-primary, #222);
+}
+
+body:not(.theme-dark) .vsd-sheet .vsd-table tbody td {
+  background: var(--color-bg-form, #ffffff);
+  color: var(--color-text-dark-primary, #222);
+}
+
+body:not(.theme-dark) .vsd-sheet .vsd-table tbody tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* Tema oscuro (tu caso real) */
+body.theme-dark .vsd-sheet .vsd-table th,
+body.theme-dark .vsd-sheet .vsd-table td {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.theme-dark .vsd-sheet .vsd-table thead th {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-text-light-primary, #f0f0f0);
+}
+
+body.theme-dark .vsd-sheet .vsd-table tbody td {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-light-primary, #f0f0f0);
+}
+
+body.theme-dark .vsd-sheet .vsd-table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* =========================
+   8) Responsive
+   ========================= */
+
 @media (max-width: 820px) {
-  .vsd-kin-sheet .vsd-grid--6 {
+  .vsd-sheet .vsd-grid--6 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .vsd-kin-sheet .form-group {
+  .vsd-sheet .form-group {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .vsd-kin-sheet .form-group > label {
+  .vsd-sheet .form-group > label {
     flex: none;
   }
 
-  .vsd-kin-sheet .form-group .form-fields input[type="number"] {
+  .vsd-sheet .form-group .form-fields input[type="number"] {
     max-width: 100%;
   }
-}
-
-/* Pequeño ajuste para evitar scroll horizontal accidental */
-.vsd-kin-sheet,
-.vsd-kin-sheet * {
-  box-sizing: border-box;
 }

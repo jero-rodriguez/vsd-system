@@ -1,0 +1,17 @@
+/* item.css (solo específico de Item genérico) */
+.vsd-sheet--item .vsd-sheet__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* En items suele ser mejor label un pelín más ancho */
+.vsd-sheet--item .form-group > label {
+  flex: 0 0 200px;
+}
+
+@media (max-width: 820px) {
+  .vsd-sheet--item .form-group > label {
+    flex: none;
+  }
+}
