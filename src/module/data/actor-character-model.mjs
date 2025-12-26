@@ -185,6 +185,16 @@ export default class VsDActorCharacterModel extends VsDActorBaseModel {
       allegiance: new fields.StringField({ initial: "", blank: true }),
     });
 
+    schema.specialAbilities = new fields.StringField({
+      initial: "",
+      blank: true,
+    });
+
+    schema.backgroundOptions = new fields.StringField({
+      initial: "",
+      blank: true,
+    });
+
     // 2) Stats
     schema.stats = makeStatsSchema(fields, requiredInteger);
 

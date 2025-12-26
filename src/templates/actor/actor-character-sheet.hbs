@@ -39,8 +39,86 @@
         </div>
       </div>
 
-      <div class="vsd-identity-logo">
-        <img src="systems/vsd-system/assets/anvil-impact.png" alt="Against the Darkmaster" />
+      <div class="vsd-identity-portrait">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      </div>
+    </section>
+
+    <section class="vsd-stats-special">
+      <div class="vsd-column">
+        <div class="vsd-column-header">Stats</div>
+        <table class="vsd-table vsd-stats-table">
+          <thead>
+            <tr>
+              <th>Stat name</th>
+              <th class="is-center is-compact">&nbsp;</th>
+              <th class="is-center is-compact">Base</th>
+              <th class="is-center is-compact">Kin</th>
+              <th class="is-center is-compact">Spec</th>
+              <th class="is-center is-compact">Tot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Brawn</td>
+              <td class="is-center">BRN</td>
+              <td><input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.stats.brawn.kin}}</span></td>
+              <td><input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.derived.stats.brawn.total}}</span></td>
+            </tr>
+            <tr>
+              <td>Swiftness</td>
+              <td class="is-center">SWI</td>
+              <td><input type="number" name="system.stats.swiftness.base" value="{{system.stats.swiftness.base}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.stats.swiftness.kin}}</span></td>
+              <td><input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.derived.stats.swiftness.total}}</span></td>
+            </tr>
+            <tr>
+              <td>Fortitude</td>
+              <td class="is-center">FOR</td>
+              <td><input type="number" name="system.stats.fortitude.base" value="{{system.stats.fortitude.base}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.stats.fortitude.kin}}</span></td>
+              <td><input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.derived.stats.fortitude.total}}</span></td>
+            </tr>
+            <tr>
+              <td>Wits</td>
+              <td class="is-center">WIT</td>
+              <td><input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.stats.wits.kin}}</span></td>
+              <td><input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.derived.stats.wits.total}}</span></td>
+            </tr>
+            <tr>
+              <td>Wisdom</td>
+              <td class="is-center">WSD</td>
+              <td><input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.stats.wisdom.kin}}</span></td>
+              <td><input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.derived.stats.wisdom.total}}</span></td>
+            </tr>
+            <tr>
+              <td>Bearing</td>
+              <td class="is-center">BEA</td>
+              <td><input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.stats.bearing.kin}}</span></td>
+              <td><input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" /></td>
+              <td class="is-center"><span class="vsd-readonly">{{system.derived.stats.bearing.total}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="vsd-column">
+        <div class="vsd-column-header">Special Abilities</div>
+        <textarea class="vsd-lined-textarea" name="system.specialAbilities">{{system.specialAbilities}}</textarea>
+      </div>
+
+      <div class="vsd-column">
+        <div class="vsd-column-header">Background Options</div>
+        <textarea class="vsd-lined-textarea" name="system.backgroundOptions">{{system.backgroundOptions}}</textarea>
       </div>
     </section>
   </div>
