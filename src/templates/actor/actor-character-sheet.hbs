@@ -13,7 +13,7 @@
       <div class="vsd-grid vsd-grid--identity-official">
         <div class="vsd-cell">
           <label>Kin</label>
-          <input type="text" name="system.identity.kin.name" value="{{system.identity.kin.name}}" />
+          <input type="text" name="system.derived.identity.kin.name" value="{{system.derived.identity.kin.name}}" />
         </div>
 
         <div class="vsd-cell">
@@ -73,7 +73,7 @@
             <td class="is-center">BRN</td>
             <td><input type="number" name="system.stats.brawn.base" value="{{system.stats.brawn.base}}" step="5" /></td>
             <td>
-              <div class="vsd-readonly">{{system.derived.stats.brawn.kin}}</div>
+              <div class="vsd-readonly">{{system.stats.brawn.kin}}</div>
             </td>
             <td><input type="number" name="system.stats.brawn.spec" value="{{system.stats.brawn.spec}}" step="5" /></td>
             <td class="is-center"><span class="vsd-pill">{{system.derived.stats.brawn.total}}</span></td>
@@ -86,7 +86,7 @@
                 step="5" />
             </td>
             <td>
-              <div class="vsd-readonly">{{system.derived.stats.swiftness.kin}}</div>
+              <div class="vsd-readonly">{{system.stats.swiftness.kin}}</div>
             </td>
             <td><input type="number" name="system.stats.swiftness.spec" value="{{system.stats.swiftness.spec}}"
                 step="5" />
@@ -101,7 +101,7 @@
                 step="5" />
             </td>
             <td>
-              <div class="vsd-readonly">{{system.derived.stats.fortitude.kin}}</div>
+              <div class="vsd-readonly">{{system.stats.fortitude.kin}}</div>
             </td>
             <td><input type="number" name="system.stats.fortitude.spec" value="{{system.stats.fortitude.spec}}"
                 step="5" />
@@ -114,7 +114,7 @@
             <td class="is-center">WIT</td>
             <td><input type="number" name="system.stats.wits.base" value="{{system.stats.wits.base}}" step="5" /></td>
             <td>
-              <div class="vsd-readonly">{{system.derived.stats.wits.kin}}</div>
+              <div class="vsd-readonly">{{system.stats.wits.kin}}</div>
             </td>
             <td><input type="number" name="system.stats.wits.spec" value="{{system.stats.wits.spec}}" step="5" /></td>
             <td class="is-center"><span class="vsd-pill">{{system.derived.stats.wits.total}}</span></td>
@@ -126,7 +126,7 @@
             <td><input type="number" name="system.stats.wisdom.base" value="{{system.stats.wisdom.base}}" step="5" />
             </td>
             <td>
-              <div class="vsd-readonly">{{system.derived.stats.wisdom.kin}}</div>
+              <div class="vsd-readonly">{{system.stats.wisdom.kin}}</div>
             </td>
             <td><input type="number" name="system.stats.wisdom.spec" value="{{system.stats.wisdom.spec}}" step="5" />
             </td>
@@ -139,7 +139,7 @@
             <td><input type="number" name="system.stats.bearing.base" value="{{system.stats.bearing.base}}" step="5" />
             </td>
             <td>
-              <div class="vsd-readonly">{{system.derived.stats.bearing.kin}}</div>
+              <div class="vsd-readonly">{{system.stats.bearing.kin}}</div>
             </td>
             <td><input type="number" name="system.stats.bearing.spec" value="{{system.stats.bearing.spec}}" step="5" />
             </td>
@@ -206,38 +206,61 @@
 
       {{#each system.skills as |category catKey|}}
       <div class="vsd-skill-category">
-        <h3>{{catKey}}</h3>
+        <h3>
+          {{catKey}}
+          <span class="vsd-muted">(DP / Level: {{category.dpPerLevel}})</span>
+        </h3>
 
         <table class="vsd-table">
           <thead>
             <tr>
               <th class="is-wide">Skill</th>
-              <th class="is-compact is-center">Ranks</th>
+              <th class="is-compact is-center">Stat</th>
+              <th class="is-compact is-center"># Ranks</th>
+              <th class="is-compact is-center">Rank</th>
+              <th class="is-compact is-center">Voc</th>
+              <th class="is-compact is-center">Kin</th>
               <th class="is-compact is-center">Spec</th>
-              <th class="is-compact is-center">Rank Bonus</th>
-              <th class="is-compact is-center">Total</th>
+              <th class="is-compact is-center">Item</th>
+              <th class="is-compact is-center">Tot</th>
             </tr>
           </thead>
           <tbody>
             {{#each category.skills as |skill skillKey|}}
             <tr>
-              <td title="{{skillKey}}">{{skillKey}}</td>
+              <td>{{skillKey}}</td>
 
-              <td class="is-compact">
+              <td class="is-center">{{skill.stat}}</td>
+
+              <td>
                 <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.ranks" value="{{skill.ranks}}"
                   min="0" />
               </td>
 
-              <td class="is-compact">
-                <input type="number" name="system.skills.{{catKey}}.skills.{{skillKey}}.spec" value="{{skill.spec}}" />
+              <td class="is-center">
+                {{get ../../system (concat "derived.skills." skillKey ".rankBonus")}}
               </td>
 
-              <td class="is-compact is-center">
-                <div class="vsd-readonly">{{get ../../system (concat "derived.skills." skillKey ".rankBonus")}}</div>
+              <td class="is-center">
+                {{get ../../system (concat "derived.skills." skillKey ".voc")}}
               </td>
 
-              <td class="is-compact is-center">
-                <div class="vsd-readonly">{{get ../../system (concat "derived.skills." skillKey ".total")}}</div>
+              <td class="is-center">
+                {{get ../../system (concat "derived.skills." skillKey ".kin")}}
+              </td>
+
+              <td class="is-center">
+                {{skill.spec}}
+              </td>
+
+              <td class="is-center">
+                {{get ../../system (concat "derived.skills." skillKey ".item")}}
+              </td>
+
+              <td class="is-center">
+                <span class="vsd-pill">
+                  {{get ../../system (concat "derived.skills." skillKey ".total")}}
+                </span>
               </td>
             </tr>
             {{/each}}
@@ -253,11 +276,15 @@
       <table class="vsd-table">
         <thead>
           <tr>
-            <th class="is-wide">Name</th>
-            <th class="is-compact is-center">Ranks</th>
-            <th class="is-compact is-center">Rank Bonus</th>
-            <th class="is-compact is-center">Total</th>
-            <th>Known Spells</th>
+            <th class="is-wide">Lore</th>
+            <th class="is-compact is-center">Stat</th>
+            <th class="is-compact is-center"># Ranks</th>
+            <th class="is-compact is-center">Rank</th>
+            <th class="is-compact is-center">Voc</th>
+            <th class="is-compact is-center">Kin</th>
+            <th class="is-compact is-center">Spec</th>
+            <th class="is-compact is-center">Item</th>
+            <th class="is-compact is-center">Tot</th>
           </tr>
         </thead>
         <tbody>
@@ -267,30 +294,106 @@
               <input type="text" name="system.spellLores.{{idx}}.name" value="{{lore.name}}" />
             </td>
 
-            <td class="is-compact">
+            <td class="is-center">{{lore.stat}}</td>
+
+            <td>
               <input type="number" name="system.spellLores.{{idx}}.ranks" value="{{lore.ranks}}" min="0" />
             </td>
 
-            <td class="is-compact is-center">
-              <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".rankBonus")}}</div>
+            <td class="is-center">
+              {{get ../system (concat "derived.spellLores." idx ".rankBonus")}}
             </td>
 
-            <td class="is-compact is-center">
-              <div class="vsd-readonly">{{get ../system (concat "derived.spellLores." idx ".total")}}</div>
+            <td class="is-center">
+              {{get ../system (concat "derived.spellLores." idx ".voc")}}
             </td>
 
-            <td>
-              <div class="vsd-knownSpells">
-                {{#each lore.knownSpells as |s|}}
-                <div>{{s}}</div>
-                {{/each}}
-              </div>
+            <td class="is-center">
+              {{get ../system (concat "derived.spellLores." idx ".kin")}}
+            </td>
+
+            <td class="is-center">
+              {{lore.spec}}
+            </td>
+
+            <td class="is-center">
+              {{get ../system (concat "derived.spellLores." idx ".item")}}
+            </td>
+
+            <td class="is-center">
+              <span class="vsd-pill">
+                {{get ../system (concat "derived.spellLores." idx ".total")}}
+              </span>
             </td>
           </tr>
           {{/each}}
         </tbody>
       </table>
     </fieldset>
+
+    <fieldset class="vsd-fieldset">
+      <legend>Combat & Survival</legend>
+
+      <div class="vsd-grid vsd-grid--3">
+
+        <div class="vsd-cell">
+          <label>Hit Points</label>
+          <div class="vsd-readonly">
+            Total: {{system.derived.hitPoints.total}} /
+            Bruised: {{system.derived.hitPoints.bruised}}
+          </div>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Magic Points</label>
+          <div class="vsd-readonly">
+            Total: {{system.derived.magicPoints.total}}
+          </div>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Drive Points</label>
+          <input type="number" name="system.drivePoints" value="{{system.drivePoints}}" min="0" />
+        </div>
+
+        <div class="vsd-cell">
+          <label>Defense (Melee / Ranged)</label>
+          <div class="vsd-readonly">
+            {{system.derived.defense.melee}} / {{system.derived.defense.ranged}}
+          </div>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Movement Rate</label>
+          <div class="vsd-readonly">
+            {{system.derived.movement.rate}}
+          </div>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Wealth Level</label>
+          <input type="number" name="system.wealth.level" value="{{system.wealth.level}}" />
+        </div>
+
+      </div>
+    </fieldset>
+
+    <fieldset class="vsd-fieldset">
+      <legend>Wounds and Conditions</legend>
+
+      <div class="vsd-grid vsd-grid--2">
+        <div class="vsd-cell">
+          <label>Conditions</label>
+          <textarea name="system.conditions">{{system.conditions}}</textarea>
+        </div>
+
+        <div class="vsd-cell">
+          <label>Injuries</label>
+          <textarea name="system.injuries">{{system.injuries}}</textarea>
+        </div>
+      </div>
+    </fieldset>
+
 
   </div>
 </div>
