@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/jero-rodriguez/vsd-system/compare/v0.1.0...v0.2.0) (2025-12-26)
+
+
+### Features
+
+* **actor-sheet:** stats and notes blocks ([b755a7c](https://github.com/jero-rodriguez/vsd-system/commit/b755a7cea63a2ebe3abe767a8b73638e49c334dd))
+
+
+### Bug Fixes
+
+* **actor-sheet:** improve responsive layout ([f4c3f22](https://github.com/jero-rodriguez/vsd-system/commit/f4c3f22e1c19e87e4c59d7dddb536848ba4a0f0f))
+* **css:** simplify notes styling ([d48c605](https://github.com/jero-rodriguez/vsd-system/commit/d48c6055ea54b804919d8aa1d3f804e1bc35ac89))
+
 ## [0.1.0](https://github.com/jero-rodriguez/vsd-system/compare/v0.0.7...v0.1.0) (2025-12-26)
 
 
