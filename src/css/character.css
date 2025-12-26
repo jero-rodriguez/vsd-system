@@ -234,7 +234,7 @@
 /* Stats + Special Abilities + Background Options */
 .vsd-sheet--character .vsd-stats-special {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 360px minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
   margin-top: 6px;
   min-width: 0;
@@ -299,31 +299,17 @@
 }
 
 .vsd-sheet--character .vsd-lined-textarea {
-  border: none;
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.35));
   border-radius: 0;
   padding: 6px 8px;
   min-height: 230px;
   line-height: 22px;
   resize: vertical;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 21px,
-    rgba(0, 0, 0, 0.35) 22px
-  );
-}
-
-body.theme-dark .vsd-sheet--character .vsd-lined-textarea {
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 21px,
-    rgba(255, 255, 255, 0.3) 22px
-  );
+  background: transparent;
 }
 
 @media (max-width: 900px) {
   .vsd-sheet--character .vsd-stats-special {
-    grid-template-columns: 1fr;
+    grid-template-columns: 360px minmax(0, 1fr);
   }
 }
