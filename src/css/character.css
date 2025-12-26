@@ -157,19 +157,18 @@
   min-width: 0;
 }
 
-.vsd-sheet--character .vsd-identity-logo {
-  flex: 0 0 150px;
+.vsd-sheet--character .vsd-identity-portrait {
+  flex: 0 0 140px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-.vsd-sheet--character .vsd-identity-logo img {
-  width: 100%;
-  max-width: 150px;
-  height: auto;
-  display: block;
-  object-fit: contain;
+.vsd-sheet--character .vsd-identity-portrait .profile-img {
+  width: 140px;
+  height: 140px;
+  border: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.35));
+  object-fit: cover;
 }
 
 .vsd-sheet--character .vsd-identity-row {
@@ -221,7 +220,7 @@
     align-items: stretch;
   }
 
-  .vsd-sheet--character .vsd-identity-logo {
+  .vsd-sheet--character .vsd-identity-portrait {
     align-self: flex-end;
   }
 
@@ -229,5 +228,89 @@
   .vsd-sheet--character .vsd-identity-row--kin-culture,
   .vsd-sheet--character .vsd-identity-row--vocation {
     grid-template-columns: 90px minmax(0, 1fr);
+  }
+}
+
+/* Stats + Special Abilities + Background Options */
+.vsd-sheet--character .vsd-stats-special {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 6px;
+  min-width: 0;
+}
+
+.vsd-sheet--character .vsd-column {
+  min-width: 0;
+}
+
+.vsd-sheet--character .vsd-column-header {
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 4px 6px;
+  text-transform: none;
+}
+
+.vsd-sheet--character .vsd-stats-table {
+  margin: 0;
+}
+
+.vsd-sheet--character .vsd-stats-table th,
+.vsd-sheet--character .vsd-stats-table td {
+  border: none;
+  border-bottom: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.35));
+  padding: 6px 4px;
+}
+
+.vsd-sheet--character .vsd-stats-table thead th {
+  background: transparent;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.2px;
+}
+
+.vsd-sheet--character .vsd-stats-table tbody td:first-child {
+  font-weight: 700;
+}
+
+.vsd-sheet--character .vsd-stats-table input[type="number"] {
+  border: none;
+  border-bottom: 1px solid var(--color-border-light-primary, rgba(0, 0, 0, 0.35));
+  border-radius: 0;
+  background: transparent;
+  height: 22px;
+  padding: 0 4px;
+  text-align: center;
+}
+
+.vsd-sheet--character .vsd-lined-textarea {
+  border: none;
+  border-radius: 0;
+  padding: 6px 8px;
+  min-height: 230px;
+  line-height: 22px;
+  resize: vertical;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 21px,
+    rgba(0, 0, 0, 0.35) 22px
+  );
+}
+
+body.theme-dark .vsd-sheet--character .vsd-lined-textarea {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 21px,
+    rgba(255, 255, 255, 0.3) 22px
+  );
+}
+
+@media (max-width: 900px) {
+  .vsd-sheet--character .vsd-stats-special {
+    grid-template-columns: 1fr;
   }
 }
