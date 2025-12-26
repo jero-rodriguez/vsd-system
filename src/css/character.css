@@ -234,7 +234,7 @@
 /* Stats + Special Abilities + Background Options */
 .vsd-sheet--character .vsd-stats-special {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 12px;
   margin-top: 6px;
   min-width: 0;
@@ -269,6 +269,19 @@
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.2px;
+}
+
+.vsd-sheet--character .vsd-stats-table {
+  font-size: 11px;
+}
+
+.vsd-sheet--character .vsd-stats-table .is-compact {
+  width: 56px;
+}
+
+.vsd-sheet--character .vsd-stats-table td:nth-child(2),
+.vsd-sheet--character .vsd-stats-table th:nth-child(2) {
+  width: 44px;
 }
 
 .vsd-sheet--character .vsd-stats-table tbody td:first-child {
