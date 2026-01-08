@@ -1,6 +1,6 @@
 {
   "name": "vsd-system",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "CSS compiler for the VsD system",
   "scripts": {
     "watch": "npx sass src/scss/vsd-system.scss css/vsd-system.css --style=expanded --source-map --watch",
