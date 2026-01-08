@@ -1,5 +1,5 @@
 {
-  "VSD_SYSTEM": {
+  "VSD": {
     "Ability": {
       "Str": { "long": "Strength", "abbr": "str" },
       "Con": { "long": "Constitution", "abbr": "con" },
