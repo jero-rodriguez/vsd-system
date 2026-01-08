@@ -4,7 +4,8 @@
   font-family: "Roboto", sans-serif;
 }
 
-.rollable:hover, .rollable:focus {
+.rollable:hover,
+.rollable:focus {
   color: #000;
   text-shadow: 0 0 10px red;
   cursor: pointer;
@@ -13,7 +14,7 @@
 .grid,
 .grid-2col {
   display: grid;
-  grid-column: span 2/span 2;
+  grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin: 10px 0;
@@ -21,52 +22,52 @@
 }
 
 .grid-3col {
-  grid-column: span 3/span 3;
+  grid-column: span 3 / span 3;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-4col {
-  grid-column: span 4/span 4;
+  grid-column: span 4 / span 4;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .grid-5col {
-  grid-column: span 5/span 5;
+  grid-column: span 5 / span 5;
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .grid-6col {
-  grid-column: span 6/span 6;
+  grid-column: span 6 / span 6;
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .grid-7col {
-  grid-column: span 7/span 7;
+  grid-column: span 7 / span 7;
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .grid-8col {
-  grid-column: span 8/span 8;
+  grid-column: span 8 / span 8;
   grid-template-columns: repeat(8, minmax(0, 1fr));
 }
 
 .grid-9col {
-  grid-column: span 9/span 9;
+  grid-column: span 9 / span 9;
   grid-template-columns: repeat(9, minmax(0, 1fr));
 }
 
 .grid-10col {
-  grid-column: span 10/span 10;
+  grid-column: span 10 / span 10;
   grid-template-columns: repeat(10, minmax(0, 1fr));
 }
 
 .grid-11col {
-  grid-column: span 11/span 11;
+  grid-column: span 11 / span 11;
   grid-template-columns: repeat(11, minmax(0, 1fr));
 }
 
 .grid-12col {
-  grid-column: span 12/span 12;
+  grid-column: span 12 / span 12;
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
@@ -293,7 +294,8 @@
   align-items: center;
   display: flex;
 }
-.vsd-system .items-list .item-name h3, .vsd-system .items-list .item-name h4 {
+.vsd-system .items-list .item-name h3,
+.vsd-system .items-list .item-name h4 {
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
@@ -363,4 +365,96 @@
 }
 .vsd-system .effects .item .effect-controls {
   border: none;
+}
+
+.sheet-header.vsd-header {
+  padding: 0;
+}
+
+/* Grid principal: 12 columnas para controlar anchos sin pelear */
+.sheet-header.vsd-header .vsd-header-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr 120px 120px;
+  gap: 8px 12px;
+  align-items: end;
+}
+
+/* Portrait: ocupa 2 filas */
+.sheet-header.vsd-header .vsd-field-portrait {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Fila 1 */
+.sheet-header.vsd-header .vsd-field-character {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.sheet-header.vsd-header .vsd-field-xp {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.sheet-header.vsd-header .vsd-field-level {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+/* Fila 2 */
+.sheet-header.vsd-header .vsd-field-culture {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.sheet-header.vsd-header .vsd-field-kin {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.sheet-header.vsd-header .vsd-field-vocation {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+/* Filas completas */
+.sheet-header.vsd-header .vsd-field-motivation,
+.sheet-header.vsd-header .vsd-field-nature,
+.sheet-header.vsd-header .vsd-field-allegiance {
+  grid-column: 1 / -1;
+}
+
+/* Inputs/labels compactos */
+.sheet-header.vsd-header .vsd-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sheet-header.vsd-header .vsd-field label {
+  font-size: 12px;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.sheet-header.vsd-header .vsd-field input {
+  width: 100%;
+  height: 28px;
+  padding: 2px 6px;
+  box-sizing: border-box;
+}
+
+/* Portrait sizing */
+.sheet-header.vsd-header .vsd-portrait {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.sheet-header.vsd-header .vsd-portrait {
+  height: 160px;
+  object-fit: cover;
 }

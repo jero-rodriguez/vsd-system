@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/jero-rodriguez/vsd-system/compare/v1.0.0...v1.1.0) (2026-01-08)
+
+
+### Features
+
+* new character sheet header ([0aaaed2](https://github.com/jero-rodriguez/vsd-system/commit/0aaaed251a0e8c8b5b3cd44e5cfc8cbab3da254b))
+
 ## [1.0.0](https://github.com/jero-rodriguez/vsd-system/compare/v0.2.0...v1.0.0) (2026-01-08)
 
 
