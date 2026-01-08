@@ -1,6 +1,0 @@
-/* npc.css (solo específico de NPC) */
-.vsd-sheet--npc .vsd-sheet__card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}

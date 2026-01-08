@@ -1,17 +1,21 @@
 {
   "id": "vsd-system",
   "title": "Against The Darkmaster",
-  "description": "The unofficial Against the Darkmaster system for Foundry VTT.",
+  "description": "The Against The Darkmaster system for FoundryVTT!",
   "authors": [
     {
-      "name": "Jeronimo Rodriguez",
-      "discord": "_jeropa"
+      "name": "Asacolips",
+      "discord": "asacolips"
+    },
+    {
+      "name": "Lee Talman",
+      "discord": ".pizzaWizard"
     }
   ],
-  "url": "https://github.com/jero-rodriguez/vsd-system",
+  "url": "Replace this with a link to your public repository",
   "license": "LICENSE.txt",
   "readme": "README.md",
-  "bugs": "https://github.com/users/jero-rodriguez/projects/1",
+  "bugs": "Replace this with a link to file issues or tickets",
   "changelog": "CHANGELOG.md",
   "media": [
     {
@@ -20,41 +24,28 @@
       "thumbnail": "systems/vsd-system/assets/anvil-impact.png"
     }
   ],
-  "version": "0.0.3",
+  "version": "2.0.0",
   "compatibility": {
-    "minimum": 13,
-    "verified": "13.351"
+    "minimum": 11,
+    "verified": "11.315"
   },
   "esmodules": ["module/vsd-system.mjs"],
-  "styles": [
-    "css/vsd-system.css",
-    "css/character.css",
-    "css/kin.css",
-    "css/npc.css",
-    "css/item.css"
-  ],
+  "styles": ["css/vsd-system.css"],
   "languages": [
     {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
-    },
-    {
-      "lang": "es",
-      "name": "Spanish",
-      "path": "lang/es.json"
     }
   ],
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "manifest": "https://raw.githubusercontent.com/jero-rodriguez/vsd-system/refs/tags/v0.0.1/system.json",
-  "download": "https://github.com/jero-rodriguez/vsd-system/archive/refs/tags/v0.0.1.zip",
+  "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
+  "download": "This must link to a .zip file of the current version",
   "background": "systems/vsd-system/assets/anvil-impact.png",
-  "grid": {
-    "distance": 1,
-    "units": "m"
-  },
+  "gridDistance": 5,
+  "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power"
 }

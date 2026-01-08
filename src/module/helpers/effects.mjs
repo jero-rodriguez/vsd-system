@@ -43,17 +43,17 @@ export function prepareActiveEffectCategories(effects) {
   const categories = {
     temporary: {
       type: 'temporary',
-      label: game.i18n.localize('VSD_SYSTEM.Effect.Temporary'),
+      label: game.i18n.localize('VSD.Effect.Temporary'),
       effects: [],
     },
     passive: {
       type: 'passive',
-      label: game.i18n.localize('VSD_SYSTEM.Effect.Passive'),
+      label: game.i18n.localize('VSD.Effect.Passive'),
       effects: [],
     },
     inactive: {
       type: 'inactive',
-      label: game.i18n.localize('VSD_SYSTEM.Effect.Inactive'),
+      label: game.i18n.localize('VSD.Effect.Inactive'),
       effects: [],
     },
   };
