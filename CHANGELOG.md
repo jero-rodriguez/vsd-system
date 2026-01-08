@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/jero-rodriguez/vsd-system/compare/v1.1.0...v1.1.1) (2026-01-08)
+
+
+### Bug Fixes
+
+* fix some css placements ([fec6e32](https://github.com/jero-rodriguez/vsd-system/commit/fec6e32c039a055d886c04c69c8d4d75514ba97a))
+
 ## [1.1.0](https://github.com/jero-rodriguez/vsd-system/compare/v1.0.0...v1.1.0) (2026-01-08)
 
 

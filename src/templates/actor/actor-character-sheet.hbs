@@ -14,13 +14,14 @@
 
       <div class="vsd-field vsd-field-xp">
         <label>XP</label>
-        <input name="system.advancement.xp" type="number" value="{{system.advancement.xp}}" data-dtype="Number" />
+        <input name="system.advancement.xp" type="number" value="{{system.advancement.xp}}" data-dtype="Number" step="1"
+          min="0" inputmode="numeric" />
       </div>
 
       <div class="vsd-field vsd-field-level">
         <label>Level</label>
         <input name="system.attributes.level.value" type="number" value="{{system.attributes.level.value}}"
-          data-dtype="Number" />
+          data-dtype="Number" step="1" min="1" inputmode="numeric" />
       </div>
 
       <div class="vsd-field vsd-field-culture">
